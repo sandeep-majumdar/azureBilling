@@ -1,0 +1,4 @@
+github.com/adeturner/observability v0.0.0-20201028145950-efe261ff9b28 h1:YOPKa/EeSyt6/OcT3AOyjyt2f3mT4FCvaaswgHuIXKM=
+github.com/adeturner/observability v0.0.0-20201028145950-efe261ff9b28/go.mod h1:H5kq/jzYlnpvq0fSTKCWzB6/O7ZfmfNH1esiL6iCs7A=
+github.com/google/uuid v1.1.2 h1:EVhdT+1Kseyi1/pUmXKaFxYsDNy9RQYkMWRH68J/W7Y=
+github.com/google/uuid v1.1.2/go.mod h1:TIyPZe4MgqvfeYDBFedMoGGpEw/LqOeaOT+nhxU+yHo=
