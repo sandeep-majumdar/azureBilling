@@ -50,38 +50,3 @@ func (i *AzurePriceItem) getCSVRow() []byte {
 	effdate := fmt.Sprintf("%s-%s-%s", i.EffectiveStartDate[8:10], i.EffectiveStartDate[5:7], i.EffectiveStartDate[0:4])
 	return []byte(fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",%f,%f,%f\n", i.MeterId, i.MeterName, i.ProductName, i.SkuName, i.ArmSkuName, i.ServiceFamily, i.ServiceName, i.Location, i.UnitOfMeasure, i.ItemType, i.ReservationTerm, effdate, i.TierMinimumUnits, i.UnitPrice, i.RetailPrice))
 }
-
-/*
-
-https://docs.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices
-
-{
-	"BillingCurrency": "USD",
-	"CustomerEntityId": "Default",
-	"CustomerEntityType": "Retail",
-	"Items": [{
-		"currencyCode": "USD",
-		"tierMinimumUnits": 0.0,
-		"retailPrice": 0.06,
-		"unitPrice": 0.06,
-		"armRegionName": "Global",
-		"location": "Global",
-		"effectiveStartDate": "2017-09-19T00:00:00Z",
-		"meterId": "ed8a651a-e0a3-4de6-a8ae-3b4ce8cb72cf",
-		"meterName": "LRS Data Stored",
-		"productId": "DZH318Z0BP0B",
-		"skuId": "DZH318Z0BP0B/004M",
-		"productName": "Files",
-		"skuName": "Standard LRS",
-		"serviceName": "Storage",
-		"serviceId": "DZH317F1HKN0",
-		"serviceFamily": "Storage",
-		"unitOfMeasure": "1 GB/Month",
-		"type": "Consumption",
-		"isPrimaryMeterRegion": true,
-		"armSkuName": ""
-	}],
-	"NextPageLink": null,
-	"Count": 1
-}
-*/
