@@ -8,9 +8,9 @@ Generate a CSV from the public Azure Prices API: https://prices.azure.com/api/re
 go run cmd/main.go
 ```
 
-## Azure Documentation
+## Documentation
 
-https://docs.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices
+See https://docs.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices
 
 ```json
 {
@@ -42,4 +42,13 @@ https://docs.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-re
 	"NextPageLink": null,
 	"Count": 1
 }
+```
+
+Running the code calls the API repeatedly, and writes a file in the current directory called azureBilling.csv
+
+```txt
+"MeterId","MeterName","ProductName","SkuName","ArmSkuName","ServiceFamily","ServiceName","Location","UnitOfMeasure","ItemType","ReservationTerm","EffectiveStartDate","TierMinimumUnits","UnitPrice","RetailPrice"
+"0001d427-82df-4d83-8ab2-b60768527e08","E10 Disks","Standard SSD Managed Disks","E10 LRS","","Storage","Storage","UK South","1/Month","Consumption","","01-11-2018",0.000000,10.560000,10.560000
+"0001e46a-9285-5fa8-b48a-240e307a24f7","A3 Spot","Virtual Machines A Series Windows","A3 Spot","Standard_A3","Compute","Virtual Machines","UK North","1 Hour","DevTestConsumption","","16-10-2019",0.000000,0.062988,0.062988
+"0001e46a-9285-5fa8-b48a-240e307a24f7","A3 Spot","Virtual Machines A Series Windows","A3 Spot","Standard_A3","Compute","Virtual Machines","UK North","1 Hour","Consumption","","16-10-2019",0.000000,0.190000,0.190000
 ```
