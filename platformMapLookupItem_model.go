@@ -5,7 +5,9 @@ type platformMapLookupItem struct {
 	subscriptionId string
 	rgName         string
 	//
+	portfolio       string
 	platform        string
+	rgId            string
 	productCode     string
 	environmentType string
 }

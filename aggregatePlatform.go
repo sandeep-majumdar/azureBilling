@@ -28,9 +28,9 @@ func (aggp *aggregatePlatform) init() {
 	aggp.items = make(map[string]*aggregatePlatformItem)
 }
 
-func (aggp *aggregatePlatform) add(reportingCategory, reportingSubCategory, platform string, unitOfMeasure string, quantity float64, costInBillingCurrency float64) {
+func (aggp *aggregatePlatform) add(reportingCategory, reportingSubCategory, portfolio, platform string, unitOfMeasure string, quantity float64, costInBillingCurrency float64) {
 
-	key := fmt.Sprintf("%s:%s:%s:%s", reportingCategory, reportingSubCategory, platform, unitOfMeasure)
+	key := fmt.Sprintf("%s:%s:%s:%s:%s", reportingCategory, reportingSubCategory, portfolio, platform, unitOfMeasure)
 
 	// initializes two variables - api will receive either the value of "key" from the map
 	// or a "zero value" (in this case the empty string)
@@ -40,6 +40,7 @@ func (aggp *aggregatePlatform) add(reportingCategory, reportingSubCategory, plat
 
 		// if not found initialise
 		api := aggregatePlatformItem{}
+		api.portfolio = portfolio
 		api.platform = platform
 		api.reportingCategory = reportingCategory
 		api.reportingSubCategory = reportingSubCategory
@@ -67,8 +68,8 @@ func (aggp *aggregatePlatform) check(e error) {
 }
 
 func (aggp *aggregatePlatform) getCSVHeader() []byte {
-	return []byte(fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
-		"reportingCategory", "reportingSubCategory", "platform", "UnitOfMeasure", "Quantity", "CostInBillingCurrency"))
+	return []byte(fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
+		"reportingCategory", "reportingSubCategory", "portfolio", "platform", "UnitOfMeasure", "Quantity", "CostInBillingCurrency"))
 
 }
 
@@ -84,8 +85,8 @@ func (aggp *aggregatePlatform) WriteCSVOutput(w io.Writer) {
 
 	for _, v := range aggp.items {
 
-		csvRow = fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\",\"%f\",\"%f\"\n",
-			v.reportingCategory, v.reportingSubCategory, v.platform, v.unitOfMeasure, v.Quantity, v.CostInBillingCurrency)
+		csvRow = fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%f\",\"%f\"\n",
+			v.reportingCategory, v.reportingSubCategory, v.portfolio, v.platform, v.unitOfMeasure, v.Quantity, v.CostInBillingCurrency)
 
 		_, err := w.Write([]byte(csvRow))
 		aggp.check(err)

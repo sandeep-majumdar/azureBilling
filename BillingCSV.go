@@ -29,7 +29,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 	var uom string
 	var cat, subcat string
-	var plat string
+	var plat, portfolio string
 
 	if err == nil {
 
@@ -66,8 +66,10 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 				plmi, ok2 := PlatformMapLookup.get(l.SubscriptionId, l.ResourceGroup)
 				if ok2 {
+					portfolio = plmi.portfolio
 					plat = plmi.platform
 				} else {
+					portfolio = "Other"
 					plat = "Other"
 				}
 
@@ -91,8 +93,8 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				}
 
 				AggregateTotal.add(cat, subcat, uom, quantity, l.CostInBillingCurrency)
-				AggregatePlatform.add(cat, subcat, plat, uom, quantity, l.CostInBillingCurrency)
-				AggregateResourceGroup.add(cat, subcat, plat, uom, quantity, l)
+				AggregatePlatform.add(cat, subcat, portfolio, plat, uom, quantity, l.CostInBillingCurrency)
+				AggregateResourceGroup.add(cat, subcat, portfolio, plat, uom, quantity, l)
 
 				if mod(cnt, 100000) == 0 {
 					observability.Logger("Info", fmt.Sprintf("Processed %d rows of billing CSV", cnt))

@@ -8,6 +8,7 @@ type aggregatePlatform struct {
 type aggregatePlatformItem struct {
 	reportingCategory     string
 	reportingSubCategory  string
+	portfolio             string
 	platform              string
 	unitOfMeasure         string
 	Quantity              float64

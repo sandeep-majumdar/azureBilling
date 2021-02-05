@@ -1,4 +1,6 @@
 ﻿MeterCategory,ReportingCategory,ReportingSubCategory
+Azure Purview,Vendor PaaS,n/a
+Azure Active Directory for External Identities,Identity,n/a
 Visual Studio Subscription,Development,n/a
 Automation,Automation,n/a
 Azure DevOps,Automation,n/a

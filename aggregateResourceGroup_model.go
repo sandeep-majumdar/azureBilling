@@ -14,6 +14,7 @@ type aggregateResourceGroupItem struct {
 	ResourceGroup        string
 	MeterId              string
 	//
+	portfolio             string
 	Platform              string
 	ResourceLocation      string
 	ProductName           string

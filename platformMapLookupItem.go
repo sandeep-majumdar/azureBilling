@@ -2,10 +2,12 @@ package azureBilling
 
 func (pmli *platformMapLookupItem) setValues(i []string) {
 
-	pmli.platform = i[0]
-	pmli.productCode = i[1]
-	pmli.environmentType = i[2]
-	pmli.subscriptionId = i[3]
-	pmli.rgName = i[4]
+	pmli.portfolio = i[0]
+	pmli.platform = i[1]
+	pmli.productCode = i[2]
+	pmli.environmentType = i[3]
+	pmli.subscriptionId = i[4]
+	pmli.rgId = i[5]
+	pmli.rgName = i[6]
 
 }

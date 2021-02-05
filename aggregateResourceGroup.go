@@ -28,7 +28,7 @@ func (aggrg *aggregateResourceGroup) init() {
 	aggrg.items = make(map[string]*aggregateResourceGroupItem)
 }
 
-func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory, platform string, unitOfMeasure string, quantity float64, l billingLine) {
+func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory, portfolio, platform string, unitOfMeasure string, quantity float64, l billingLine) {
 
 	key := fmt.Sprintf("%s:%s:%s:%s:%s:%s", reportingCategory, reportingSubCategory, l.SubscriptionId, l.ResourceGroup, l.MeterId, unitOfMeasure)
 
@@ -41,6 +41,7 @@ func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory
 		// if not found initialise
 		argi := aggregateResourceGroupItem{}
 		argi.Platform = platform
+		argi.portfolio = portfolio
 		argi.reportingCategory = reportingCategory
 		argi.reportingSubCategory = reportingSubCategory
 		argi.UnitOfMeasure = unitOfMeasure
@@ -85,8 +86,8 @@ func (aggrg *aggregateResourceGroup) check(e error) {
 
 func (aggrg *aggregateResourceGroup) getCSVHeader() []byte {
 	return []byte(fmt.Sprintf(
-		"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
-		"reportingCategory", "reportingSubCategory", "Platform", "SubscriptionId", "ResourceGroup", "MeterId", "UnitOfMeasure",
+		"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
+		"reportingCategory", "reportingSubCategory", "Portfolio", "Platform", "SubscriptionId", "ResourceGroup", "MeterId", "UnitOfMeasure",
 		"ProductName", "ResourceLocation", "MeterCategory", "MeterSubCategory", "MeterName", "MeterRegion",
 		"EffectivePrice", "CostCenter", "ConsumedService", "ResourceId", "ReservationId", "Term", "Quantity", "UnitPrice", "CostInBillingCurrency"))
 }
@@ -104,8 +105,8 @@ func (aggrg *aggregateResourceGroup) WriteCSVOutput(w io.Writer) {
 	for _, v := range aggrg.items {
 
 		csvRow = fmt.Sprintf(
-			"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%f\",\"%s\",\"%f\"\n",
-			v.reportingCategory, v.reportingSubCategory, v.Platform, v.SubscriptionId, v.ResourceGroup, v.MeterId, v.UnitOfMeasure,
+			"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%f\",\"%s\",\"%f\"\n",
+			v.reportingCategory, v.reportingSubCategory, v.portfolio, v.Platform, v.SubscriptionId, v.ResourceGroup, v.MeterId, v.UnitOfMeasure,
 			v.ProductName, v.ResourceLocation, v.MeterCategory, v.MeterSubCategory, v.MeterName, v.MeterRegion,
 			v.EffectivePrice, v.CostCenter, v.ConsumedService, v.ResourceId, v.ReservationId, v.Term, v.Quantity, v.UnitPrice, v.CostInBillingCurrency)
 
