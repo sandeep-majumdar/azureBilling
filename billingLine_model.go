@@ -1,0 +1,56 @@
+package azureBilling
+
+type billingLine struct {
+	InvoiceSectionName     string
+	AccountName            string
+	AccountOwnerId         string
+	SubscriptionId         string
+	SubscriptionName       string
+	ResourceGroup          string
+	ResourceLocation       string
+	Date                   string
+	ProductName            string
+	MeterCategory          string
+	MeterSubCategory       string
+	MeterId                string
+	MeterName              string
+	MeterRegion            string
+	UnitOfMeasure          string
+	Quantity               float64
+	EffectivePrice         string
+	CostInBillingCurrency  float64
+	CostCenter             string
+	ConsumedService        string
+	ResourceId             string
+	Tags                   string
+	OfferId                string
+	AdditionalInfo         string
+	ServiceInfo1           string
+	ServiceInfo2           string
+	ResourceName           string
+	ReservationId          string
+	ReservationName        string
+	UnitPrice              string
+	ProductOrderId         string
+	ProductOrderName       string
+	Term                   string
+	PublisherType          string
+	PublisherName          string
+	ChargeType             string
+	Frequency              string
+	PricingModel           string
+	AvailabilityZone       string
+	BillingAccountId       string
+	BillingAccountName     string
+	BillingCurrencyCode    string
+	BillingPeriodStartDate string
+	BillingPeriodEndDate   string
+	BillingProfileId       string
+	BillingProfileName     string
+	InvoiceSectionId       string
+	IsAzureCreditEligible  string
+	PartNumber             string
+	PayGPrice              string
+	PlanName               string
+	ServiceFamily          string
+}

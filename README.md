@@ -8,7 +8,7 @@ Generate a CSV from the public Azure Prices API: https://prices.azure.com/api/re
 go run cmd/main.go
 ```
 
-## Documentation
+## Azure Pricing API
 
 See https://docs.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices
 

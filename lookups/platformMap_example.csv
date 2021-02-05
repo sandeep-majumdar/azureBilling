@@ -1,0 +1,7 @@
+platform,productCode,environmentType,subscriptionId,rgName
+Business Unit 1,product1,Dev,5e331d18-6bc3-6bc3-6bc3-26f306b2c995,bu1rg1
+Business Unit 1,product1,Test,5e331d18-6bc3-6bc3-6bc3-26f306b2c995,bu1rg2
+Business Unit 1,product1,Prod,5e331d18-6bc3-6bc3-6bc3-26f306b2c995,bu1rg3
+Business Unit 2,product2,Dev,5e331d18-6bc3-abc3-6bc3-26f306b2c995,bu2rg1
+Business Unit 2,product2,Test,5e331d18-6bc3-abc3-6bc3-26f306b2c995,bu2rg2
+Business Unit 2,product2,Prod,5e331d18-6bc3-abc3-6bc3-26f306b2c995,bu2rg3

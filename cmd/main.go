@@ -2,8 +2,41 @@ package main
 
 import (
 	"github.com/adeturner/azureBilling"
+	"github.com/adeturner/observability"
 )
 
 func main() {
-	azureBilling.GeneratePrices("azureBilling.csv")
+
+	// set logging values
+	observability.SetCausationId("1")
+	observability.GenCorrId()
+
+	// load config
+	c := azureBilling.Config{}
+	c.LoadConfiguration("config.json")
+	billingCSVFile := c.WorkingDirectory + c.BillingCSVFile
+	azurePricesCSVFile := c.WorkingDirectory + c.AzurePricesCSVFile
+	billingCSVMaxDate := c.BillingCSVMaxDate
+	lookupDirectory := c.LookupDirectory
+
+	// if AzurePricesCSVFile doesnt exist, create a new one
+	observability.Logger("Info", azurePricesCSVFile)
+	ap := azureBilling.AzurePrices{}
+	ap.SetFile(azurePricesCSVFile)
+	if !ap.FileExists() {
+		ap.GeneratePrices(azurePricesCSVFile)
+	}
+	ap.ReadAzurePrices(billingCSVMaxDate)
+
+	// Lookups are expected to exist and must be manually maintained
+	azureBilling.VmSizeLookup.Read(lookupDirectory + "vmSizes.csv")
+	azureBilling.ManagedDiskLookup.Read(lookupDirectory + "managedDisks.csv")
+	azureBilling.PlatformMapLookup.Read(lookupDirectory + "platformMap.csv")
+	azureBilling.ReportingCategoryLookup.Read(lookupDirectory + "reportingCategories.csv")
+
+	// 6514840 records in test file in 5 mins
+	bcsv := azureBilling.BillingCSV{}
+	bcsv.SetFile(billingCSVFile)
+	bcsv.ProcessFile()
+
 }

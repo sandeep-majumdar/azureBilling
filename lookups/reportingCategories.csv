@@ -1,0 +1,78 @@
+﻿MeterCategory,ReportingCategory,ReportingSubCategory
+Automation,Automation,
+Azure DevOps,Automation,
+Backup,Backup,
+Azure Bastion,Compute IaaS,Bastion
+Azure Site Recovery,Compute IaaS,Disaster Recovery
+Virtual Machines Licenses,Compute IaaS,Licences
+Load Balancer,Compute IaaS,Network
+NAT Gateway,Compute IaaS,Network
+Virtual Network,Compute IaaS,Network
+Virtual Machines,Compute IaaS,Virtual Machines
+Container Instances,Compute Paas,Containerised Serverless
+Container Registry,Compute Paas,Containerised Serverless
+Azure Firewall,Compute PaaS,Network
+Azure App Service,Compute Paas,Non-containerised Serverless
+Scheduler,Compute PaaS,Scheduler
+Functions,Compute PaaS,Serverless Functions
+Logic Apps,Compute PaaS,Serverless Functions
+Azure Bot Service,Compute PaaS,
+Azure Data Explorer,Data PaaS,Compute
+Azure Data Factory,Data PaaS,Compute
+Azure Data Factory v2,Data PaaS,Compute
+Azure Databricks,Data PaaS,Compute
+Azure Synapse Analytics,Data Paas,Compute
+Data Catalog,Data PaaS,Compute
+Data Lake Analytics,Data PaaS,Compute
+Power BI Embedded,Data PaaS,Compute
+Azure Cosmos DB,Data PaaS,Database
+Azure Database for MySQL,Data PaaS,Database
+Azure Database for PostgreSQL,Data PaaS,Database
+Data Lake Store,Data PaaS,Database
+Redis Cache,Data PaaS,Database
+SQL Data Warehouse,Data PaaS,Database
+SQL Database,Data PaaS,Database
+SQL Managed Instance,Data PaaS,Database
+Event Grid,Data PaaS,Events
+Event Hubs,Data PaaS,Events
+Service Bus,Data PaaS,Events
+SignalR,Data PaaS,Events
+Azure Active Directory B2C,Identity,
+Azure Active Directory Domain Services,Identity,
+Azure DNS,Network,
+Bandwidth,Network,
+Content Delivery Network,Network,
+ExpressRoute,Network,
+Network Watcher,Network,
+Traffic Manager,Network,
+Virtual WAN,Network,
+VPN Gateway,Network,
+Application Insights,Observability,
+Azure Monitor,Observability,
+Log Analytics,Observability,
+App Configuration,Paas,Serverless
+Advanced Data Security,Security,
+Advanced Threat Protection,Security,
+API Management,Security,
+Application Gateway,Security,
+Azure DDOS Protection,Security,
+Azure Front Door Service,Security,
+Key Vault,Security,
+Security Center,Security,
+Sentinel,Security,
+Azure NetApp Files,Storage,
+Storage,Storage,
+StorSimple,Storage,
+Unassigned,Unassigned,
+Azure Analysis Services,Vendor PaaS,
+Azure Cognitive Search,Vendor PaaS,
+Azure Maps,Vendor Paas,
+Cloud Services,Vendor PaaS,
+Cognitive Services,Vendor PaaS,
+HDInsight,Vendor PaaS,
+Insight and Analytics,Vendor PaaS,
+IoT Hub,Vendor PaaS,
+Machine Learning Studio,Vendor PaaS,
+Stream Analytics,Vendor PaaS,
+Time Series Insights,Vendor PaaS,
+Visual Studio Codespaces,Vendor PaaS,

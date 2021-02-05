@@ -1,0 +1,38 @@
+﻿MeterName,SizeGB
+E1 Disks,4
+E10 Disks,128
+E15 Disks,256
+E2 Disks,8
+E20 Disks,512
+E3 Disks,16
+E30 Disks,1024
+E4 Disks,32
+E40 Disks,2048
+E50 Disks,4096
+E6 Disks,64
+E60 Disks,8192
+E70 Disks,16384
+P1 Disks,4
+P10 Disks,128
+P15 Disks,256
+P20 Disks,512
+P3 Disks,16
+P30 Disks,1024
+P4 Disks,32
+P40 Disks,2048
+P50 Disks,4096
+P6 Disks,64
+P60 Disks,8192
+S10 Disks,128
+S15 Disks,256
+S20 Disks,512
+S30 Disks,1024
+S4 Disks,32
+S40 Disks,2048
+S50 Disks,4096
+S6 Disks,64
+S60 Disks,8192
+S70 Disks,16384
+S80 Disks,32767
+Server,0
+Server - Free,0

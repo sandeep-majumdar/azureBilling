@@ -1,0 +1,6 @@
+{
+    "workingDirectory": "/mnt/c/Users/nnn/Downloads/",
+	"billingCSVFile": "ActualCostMtD_174c3ad5-77af-4e8d-824d-52f47a1f84dd.csv",
+	"azurePricesCSVFile": "azurePrices.csv",
+	"billingCSVMaxDate": "31/01/2021"
+}
