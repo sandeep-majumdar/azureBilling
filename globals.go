@@ -6,6 +6,8 @@ package azureBilling
 // Lookups
 // ###############################################################
 
+var ConfigMap Config
+
 // MeterLookup.items=map[meterId]priceMeterItem
 var MeterLookup priceMeter
 

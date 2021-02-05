@@ -9,11 +9,14 @@ import (
 )
 
 type Config struct {
-	WorkingDirectory   string `json:"workingDirectory"`
-	BillingCSVFile     string `json:"billingCSVFile"`
-	AzurePricesCSVFile string `json:"azurePricesCSVFile"`
-	BillingCSVMaxDate  string `json:"billingCSVMaxDate"`
-	LookupDirectory    string `json:"lookupDirectory"`
+	WorkingDirectory               string `json:"workingDirectory"`
+	BillingCSVFile                 string `json:"billingCSVFile"`
+	OutputAzurePricesCSVFile       string `json:"outputAzurePricesCSVFile"`
+	BillingCSVMaxDate              string `json:"billingCSVMaxDate"`
+	LookupDirectory                string `json:"lookupDirectory"`
+	OutputAggregateTotalCsvFile    string `json:"outputAggregateTotalCsvFile"`
+	OutputAggregatePlatformCsvFile string `json:"outputAggregatePlatformCsvFile"`
+	OutputAggregateRGCsvFile       string `json:"outputAggregateRGCsvFile"`
 }
 
 func (cfg *Config) LoadConfiguration(file string) {

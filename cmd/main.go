@@ -12,10 +12,10 @@ func main() {
 	observability.GenCorrId()
 
 	// load config
-	c := azureBilling.Config{}
-	c.LoadConfiguration("config.json")
+	azureBilling.ConfigMap.LoadConfiguration("config.json")
+	c := azureBilling.ConfigMap
 	billingCSVFile := c.WorkingDirectory + c.BillingCSVFile
-	azurePricesCSVFile := c.WorkingDirectory + c.AzurePricesCSVFile
+	azurePricesCSVFile := c.WorkingDirectory + c.OutputAzurePricesCSVFile
 	billingCSVMaxDate := c.BillingCSVMaxDate
 	lookupDirectory := c.LookupDirectory
 

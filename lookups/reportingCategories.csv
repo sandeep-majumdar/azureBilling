@@ -1,7 +1,8 @@
 ﻿MeterCategory,ReportingCategory,ReportingSubCategory
-Automation,Automation,
-Azure DevOps,Automation,
-Backup,Backup,
+Visual Studio Subscription,Development,n/a
+Automation,Automation,n/a
+Azure DevOps,Automation,n/a
+Backup,Backup,n/a
 Azure Bastion,Compute IaaS,Bastion
 Azure Site Recovery,Compute IaaS,Disaster Recovery
 Virtual Machines Licenses,Compute IaaS,Licences
@@ -16,7 +17,7 @@ Azure App Service,Compute Paas,Non-containerised Serverless
 Scheduler,Compute PaaS,Scheduler
 Functions,Compute PaaS,Serverless Functions
 Logic Apps,Compute PaaS,Serverless Functions
-Azure Bot Service,Compute PaaS,
+Azure Bot Service,Compute PaaS,n/a
 Azure Data Explorer,Data PaaS,Compute
 Azure Data Factory,Data PaaS,Compute
 Azure Data Factory v2,Data PaaS,Compute
@@ -37,42 +38,42 @@ Event Grid,Data PaaS,Events
 Event Hubs,Data PaaS,Events
 Service Bus,Data PaaS,Events
 SignalR,Data PaaS,Events
-Azure Active Directory B2C,Identity,
-Azure Active Directory Domain Services,Identity,
-Azure DNS,Network,
-Bandwidth,Network,
-Content Delivery Network,Network,
-ExpressRoute,Network,
-Network Watcher,Network,
-Traffic Manager,Network,
-Virtual WAN,Network,
-VPN Gateway,Network,
-Application Insights,Observability,
-Azure Monitor,Observability,
-Log Analytics,Observability,
+Azure Active Directory B2C,Identity,n/a
+Azure Active Directory Domain Services,Identity,n/a
+Azure DNS,Network,n/a
+Bandwidth,Network,n/a
+Content Delivery Network,Network,n/a
+ExpressRoute,Network,n/a
+Network Watcher,Network,n/a
+Traffic Manager,Network,n/a
+Virtual WAN,Network,n/a
+VPN Gateway,Network,n/a
+Application Insights,Observability,n/a
+Azure Monitor,Observability,n/a
+Log Analytics,Observability,n/a
 App Configuration,Paas,Serverless
-Advanced Data Security,Security,
-Advanced Threat Protection,Security,
-API Management,Security,
-Application Gateway,Security,
-Azure DDOS Protection,Security,
-Azure Front Door Service,Security,
-Key Vault,Security,
-Security Center,Security,
-Sentinel,Security,
-Azure NetApp Files,Storage,
-Storage,Storage,
-StorSimple,Storage,
-Unassigned,Unassigned,
-Azure Analysis Services,Vendor PaaS,
-Azure Cognitive Search,Vendor PaaS,
-Azure Maps,Vendor Paas,
-Cloud Services,Vendor PaaS,
-Cognitive Services,Vendor PaaS,
-HDInsight,Vendor PaaS,
-Insight and Analytics,Vendor PaaS,
-IoT Hub,Vendor PaaS,
-Machine Learning Studio,Vendor PaaS,
-Stream Analytics,Vendor PaaS,
-Time Series Insights,Vendor PaaS,
-Visual Studio Codespaces,Vendor PaaS,
+Advanced Data Security,Security,n/a
+Advanced Threat Protection,Security,n/a
+API Management,Security,n/a
+Application Gateway,Security,n/a
+Azure DDOS Protection,Security,n/a
+Azure Front Door Service,Security,n/a
+Key Vault,Security,n/a
+Security Center,Security,n/a
+Sentinel,Security,n/a
+Azure NetApp Files,Storage,n/a
+Storage,Storage,n/a
+StorSimple,Storage,n/a
+Unassigned,Unassigned,n/a
+Azure Analysis Services,Vendor PaaS,n/a
+Azure Cognitive Search,Vendor PaaS,n/a
+Azure Maps,Vendor Paas,n/a
+Cloud Services,Vendor PaaS,n/a
+Cognitive Services,Vendor PaaS,n/a
+HDInsight,Vendor PaaS,n/a
+Insight and Analytics,Vendor PaaS,n/a
+IoT Hub,Vendor PaaS,n/a
+Machine Learning Studio,Vendor PaaS,n/a
+Stream Analytics,Vendor PaaS,n/a
+Time Series Insights,Vendor PaaS,n/a
+Visual Studio Codespaces,Vendor PaaS,n/a

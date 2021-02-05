@@ -3,7 +3,7 @@ package azureBilling
 // stringKey: reportingCategory + "/" + reportingSubCategory + "/" + SubscriptionId + "/" + ResourceGroup + "/" + MeterId
 
 type aggregateResourceGroup struct {
-	items map[string]aggregateResourceGroupItem
+	items map[string]*aggregateResourceGroupItem
 }
 
 type aggregateResourceGroupItem struct {
@@ -23,12 +23,12 @@ type aggregateResourceGroupItem struct {
 	MeterRegion           string
 	UnitOfMeasure         string
 	EffectivePrice        string
-	CostInBillingCurrency string
+	CostInBillingCurrency float64
 	CostCenter            string
 	ConsumedService       string
 	ResourceId            string
 	ReservationId         string
 	Term                  string
 	Quantity              float64
-	UnitPrice             float64
+	UnitPrice             string
 }

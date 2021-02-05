@@ -2,6 +2,7 @@ package azureBilling
 
 import (
 	"fmt"
+	"io"
 
 	"github.com/adeturner/observability"
 )
@@ -57,5 +58,61 @@ func (aggtot *aggregateTotal) add(reportingCategory, reportingSubCategory, unitO
 	aggtot.items[key].CostInBillingCurrency += costInBillingCurrency
 
 	// observability.Logger("Info", fmt.Sprintf("newQ=%f", aggtot.items[key].Quantity))
+
+}
+
+/*
+   #######################################################
+   Below here is about producing output only
+   #######################################################
+*/
+
+func (aggtot *aggregateTotal) check(e error) {
+	if e != nil {
+		observability.Logger("Error", fmt.Sprintf("%v", e))
+		panic(e)
+	}
+}
+
+func (aggtot *aggregateTotal) getCSVHeader() []byte {
+	return []byte(fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
+		"reportingCategory", "reportingSubCategory", "UnitOfMeasure", "Quantity", "CostInBillingCurrency"))
+}
+
+func (aggtot *aggregateTotal) WriteCSVHeader(w io.Writer) {
+
+	_, err := w.Write(aggtot.getCSVHeader())
+	aggtot.check(err)
+}
+
+func (aggtot *aggregateTotal) WriteCSVOutput(w io.Writer) {
+
+	var csvRow string
+
+	for _, v := range aggtot.items {
+
+		csvRow = fmt.Sprintf("\"%s\",\"%s\",\"%s\",\"%f\",\"%f\"\n",
+			v.reportingCategory, v.reportingSubCategory, v.UnitOfMeasure, v.Quantity, v.CostInBillingCurrency)
+
+		_, err := w.Write([]byte(csvRow))
+		aggtot.check(err)
+	}
+
+}
+
+func (aggtot *aggregateTotal) WriteFile(filename string) {
+
+	observability.Logger("Info", fmt.Sprintf("Writing to %s", filename))
+
+	var fs fileSystem = localFS{}
+
+	file, err := fs.Create(filename)
+	if err != nil {
+		observability.Logger("Error", fmt.Sprintf("Failed to open file: %v", err))
+	}
+	defer file.Close()
+
+	aggtot.WriteCSVHeader(file)
+	aggtot.WriteCSVOutput(file)
 
 }

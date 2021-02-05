@@ -25,6 +25,11 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 	AggregateTotal.init()
 	AggregatePlatform.init()
+	AggregateResourceGroup.init()
+
+	var uom string
+	var cat, subcat string
+	var plat string
 
 	if err == nil {
 
@@ -51,8 +56,27 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				l.setValues(record)
 
 				rcli, ok1 := ReportingCategoryLookup.get(l.MeterCategory)
+				if ok1 {
+					cat = rcli.reportingCategory
+					subcat = rcli.reportingSubCategory
+				} else {
+					cat = l.MeterCategory
+					subcat = ""
+				}
+
 				plmi, ok2 := PlatformMapLookup.get(l.SubscriptionId, l.ResourceGroup)
+				if ok2 {
+					plat = plmi.platform
+				} else {
+					plat = "Other"
+				}
+
 				pmi, ok3 := MeterLookup.get(l.MeterId)
+				if ok3 {
+					uom = pmi.UnitOfMeasure
+				} else {
+					uom = l.UnitOfMeasure + "?"
+				}
 
 				quantity := l.Quantity
 
@@ -62,28 +86,36 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				if l.MeterCategory[len(l.MeterCategory)-5:] == " Disks" {
 					mdli, ok4 := ManagedDiskLookup.get(l.MeterName)
 					if ok4 {
-						quantity = float64(mdli.SizeGB)
+						quantity = float64(mdli.SizeGB) * l.Quantity
 					}
 				}
 
-				if ok1 && ok2 && ok3 {
-
-					AggregateTotal.add(rcli.reportingCategory, rcli.reportingSubCategory, pmi.UnitOfMeasure, quantity, l.CostInBillingCurrency)
-					AggregatePlatform.add(l.SubscriptionId, l.ResourceGroup, plmi.platform, quantity, l.CostInBillingCurrency)
-
-				}
+				AggregateTotal.add(cat, subcat, uom, quantity, l.CostInBillingCurrency)
+				AggregatePlatform.add(cat, subcat, plat, uom, quantity, l.CostInBillingCurrency)
+				AggregateResourceGroup.add(cat, subcat, plat, uom, quantity, l)
 
 				if mod(cnt, 100000) == 0 {
 					observability.Logger("Info", fmt.Sprintf("Processed %d rows of billing CSV", cnt))
+					observability.LogMemory("Info")
 				}
 			}
 		}
 
 		AggregateTotal.print(1000)
 
+		outputAggregateTotalCsvFile := ConfigMap.WorkingDirectory + ConfigMap.OutputAggregateTotalCsvFile
+		outputAggregatePlatformCsvFile := ConfigMap.WorkingDirectory + ConfigMap.OutputAggregatePlatformCsvFile
+		outputAggregateRGCsvFile := ConfigMap.WorkingDirectory + ConfigMap.OutputAggregateRGCsvFile
+
+		AggregateTotal.WriteFile(outputAggregateTotalCsvFile)
+		AggregatePlatform.WriteFile(outputAggregatePlatformCsvFile)
+		AggregateResourceGroup.WriteFile(outputAggregateRGCsvFile)
+
 		t1.EndAndPrint(true)
 
 		observability.Logger("Info", fmt.Sprintf("Complete. Processed %d rows of billing CSV", cnt))
+		observability.LogMemory("Info")
+
 	}
 
 	return err

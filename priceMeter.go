@@ -55,17 +55,20 @@ func (pm *priceMeter) add(i PriceItem) {
 
 	itemDate, err := dateStrToTime(i.EffectiveStartDate)
 
+	// added b = true to bypass date checks temporarily
+	b := true
+
 	if err != nil {
 		// do nothing
 	} else {
 		// make sure the item effiective date is before the billing period period
-		if itemDate.Before(pm.periodEndDate) {
+		if b || itemDate.Before(pm.periodEndDate) {
 
 			v := priceMeterItem{}
 			v.setValues(i)
 
 			// if the meterid date is not set, set it to the item effective date
-			if pm.items[i.MeterId].EffectiveStartDate.IsZero() ||
+			if b || pm.items[i.MeterId].EffectiveStartDate.IsZero() ||
 				pm.items[i.MeterId].EffectiveStartDate.After(itemDate) {
 
 				pm.items[i.MeterId] = v
@@ -81,7 +84,7 @@ func (pm *priceMeter) get(meterId string) (priceMeterItem, bool) {
 
 	rcli, ok := pm.items[key]
 	if !ok {
-		observability.Logger("Error", fmt.Sprintf("Unable to find priceMeterItem for key=%s", key))
+		//observability.Logger("Error", fmt.Sprintf("Unable to find priceMeterItem for key=%s", key))
 	}
 
 	return rcli, ok
