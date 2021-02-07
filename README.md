@@ -1,6 +1,6 @@
 # AzureBilling
 
-This product offers a solution with a view to enable exective reporting for Azure Billing 
+This product offers a solution to enable executive reporting for Azure Billing in terms they should understand
 
 The scope of the output is Price (P) and Quantity (Q) by org unit/functional area/product
 
@@ -135,7 +135,11 @@ I 2021-02-07 09:57:23.8509 [1 => 20e252d9-5b25-495f-8598-78c53d277b4e]  BillingC
 
 The code makes use of the public Azure Pricing API to get a useful Unit Of Measure
 
+The first time you invoke azureBilling product it will scrape the API and write a file called azureBilling.csv (see config.json)
+
 For the docs, see https://docs.microsoft.com/en-us/rest/api/cost-management/retail-prices/azure-retail-prices
+
+### Example api return value
 
 ```json
 {
@@ -169,9 +173,7 @@ For the docs, see https://docs.microsoft.com/en-us/rest/api/cost-management/reta
 }
 ```
 
-The first time you invoke azureBilling product it will scrape the API and write a file called azureBilling.csv (see config.json)
-
-e.g.
+### Sample of csv generated
 
 ```txt
 "MeterId","MeterName","ProductName","SkuName","ArmSkuName","ServiceFamily","ServiceName","Location","UnitOfMeasure","ItemType","ReservationTerm","EffectiveStartDate","TierMinimumUnits","UnitPrice","RetailPrice"
