@@ -94,17 +94,17 @@ Create pivot tables from the data in whatever fashion you prefer. Below are a co
 
 ### Price
 
-Filter: Portfolio, Platform, ProductName
-Rows: ReportingCategory, ReportingSubCategory
-Columns: SummaryCategory
-Values: Sum of summaryQuantity
+- Filter: Portfolio, Platform, ProductName
+- Rows: ReportingCategory, ReportingSubCategory
+- Columns: SummaryCategory
+- Values: Sum of summaryQuantity
 
 ### Quantity
 
-Filter: Portfolio, Platform, ProductName
-Rows: ReportingCategory, ReportingSubCategory
-Columns: SummaryCategory
-Values: Sum of CostInBillingCurrency
+- Filter: Portfolio, Platform, ProductName
+- Rows: ReportingCategory, ReportingSubCategory
+- Columns: SummaryCategory
+- Values: Sum of CostInBillingCurrency
 
 ## Sample execution output
 
