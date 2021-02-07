@@ -7,4 +7,6 @@ func (pmv *priceMeterItem) setValues(i PriceItem) {
 	pmv.RetailPrice = i.RetailPrice
 	pmv.UnitPrice = i.UnitPrice
 	pmv.UnitOfMeasure = i.UnitOfMeasure
+	pmv.SkuName = i.SkuName
+	pmv.ArmSkuName = i.ArmSkuName
 }

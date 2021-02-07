@@ -9,4 +9,6 @@ type priceMeterItem struct {
 	RetailPrice        float64
 	UnitPrice          float64
 	UnitOfMeasure      string
+	SkuName            string
+	ArmSkuName         string
 }

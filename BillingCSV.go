@@ -23,8 +23,6 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 	cnt := 0
 
-	//AggregateTotal.init()
-	//AggregatePlatform.init()
 	AggregateResourceGroup.init()
 
 	var uom string
@@ -82,8 +80,8 @@ func (bcsv *BillingCSV) ProcessFile() error {
 					uom = l.UnitOfMeasure
 				}
 
-				scli, ok2 := SummaryCategoryLookup.get(cat, subcat, uom)
-				if ok2 {
+				scli, ok4 := SummaryCategoryLookup.get(cat, subcat, uom)
+				if ok4 {
 					summaryCategory = scli.Summary
 					quantityDivisor = scli.QuantityDivisor
 					divisor = SummaryCategoryLookup.getDivisor(quantityDivisor, l.BillingPeriodEndDate)
@@ -107,6 +105,35 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				}
 
 				AggregateResourceGroup.add(cat, subcat, portfolio, plat, uom, summaryCategory, quantityDivisor, summaryQuantity, quantity, l)
+
+				/*
+					Compute IaaS,Virtual Machines,1 Hour,Count,NumDaysInMonthTimes24Hrs
+					Compute IaaS,Virtual Machines,n/a,CPU,n/a
+					Compute IaaS,Virtual Machines,n/a,Memory (GB),n/a
+				*/
+
+				if cat == "Compute IaaS" && subcat == "Virtual Machines" && summaryCategory == "Count" {
+
+					if ok3 {
+						// observability.Logger("Info", fmt.Sprintf("sku=%s armsku=%s", pmi.SkuName, pmi.ArmSkuName))
+						// sku=DS12-2 v2 armsku=Standard_DS12-2_v2
+						vmli, ok5 := VmSizeLookup.get(pmi.ArmSkuName)
+
+						if ok5 {
+
+							// observability.Logger("Info", fmt.Sprintf("Matched ArmSkuName=%s", pmi.ArmSkuName))
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "CPU", summaryCategory, quantityDivisor, float64(vmli.Cores), quantity, l)
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "Memory (GB)", summaryCategory, quantityDivisor, float64(vmli.MemGB), quantity, l)
+
+						} else {
+							//observability.Logger("Info", fmt.Sprintf("Unable to match ArmSkuName=%s", pmi.ArmSkuName))
+						}
+
+					} else {
+						observability.Logger("Info", fmt.Sprintf("Failed meterlookup, cannot retrieve sku for vm"))
+					}
+
+				}
 
 				if mod(cnt, 100000) == 0 {
 					observability.Logger("Info", fmt.Sprintf("Processed %d rows of billing CSV", cnt))

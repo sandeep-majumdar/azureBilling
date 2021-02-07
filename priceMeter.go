@@ -55,7 +55,7 @@ func (pm *priceMeter) add(i PriceItem) {
 
 	itemDate, err := dateStrToTime(i.EffectiveStartDate)
 
-	// added b = true to bypass date checks temporarily
+	// added b = true to bypass date checks temporarily (maybe forever...)
 	b := true
 
 	if err != nil {

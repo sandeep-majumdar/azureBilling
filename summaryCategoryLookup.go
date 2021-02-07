@@ -16,11 +16,31 @@ func (scl *summaryCategoryLookup) print(cnt int) {
 	i := 0
 
 	for k, v := range scl.items {
-		observability.Logger("Info", fmt.Sprintf("%s -> %v\n", k, v))
+		observability.Logger("Info", fmt.Sprintf("%s -> %v", k, v))
 		i++
 		if i > cnt {
 			break
 		}
+	}
+}
+
+func (scl *summaryCategoryLookup) printKey(str string) {
+
+	i := 0
+	b := false
+
+	for k, v := range scl.items {
+		if k == str {
+			observability.Logger("Info", fmt.Sprintf("PrintKey %s -> %v", k, v))
+			b = true
+			break
+		}
+
+		i++
+	}
+
+	if !b {
+		observability.Logger("Info", fmt.Sprintf("PrintKey %s -> NOT FOUND", str))
 	}
 }
 
@@ -74,7 +94,7 @@ func (scl *summaryCategoryLookup) Read(fileLocation string) error {
 
 	observability.LogMemory("Info")
 	scl.printCount()
-	//scl.print(100)
+	// scl.print(100)
 
 	return err
 
@@ -115,7 +135,7 @@ func (scl *summaryCategoryLookup) getDivisor(quantityDivisor, effectiveDate stri
 }
 
 func (scl *summaryCategoryLookup) getKey(reportingCategory, reportingSubCategory, UnitOfMeasure string) string {
-	return strings.ToLower(fmt.Sprintf("%s:%s:%s", reportingCategory, reportingSubCategory, UnitOfMeasure))
+	return strings.ToLower(fmt.Sprintf(":%s:%s:%s:", reportingCategory, reportingSubCategory, UnitOfMeasure))
 }
 
 func (scl *summaryCategoryLookup) get(reportingCategory, reportingSubCategory, UnitOfMeasure string) (summaryCategoryLookupItem, bool) {

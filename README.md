@@ -2,13 +2,11 @@
 
 This product offers a solution to enable executive reporting for Azure Billing in terms they should understand
 
-The scope of the output is Price (P) and Quantity (Q) by org unit/functional area/product
+The target scope of the output is to obtain Price (P) and Quantity (Q) by org unit/functional area/product. 
+
+Many other views are possible
 
 The output is in the form of a resource group level aggregate CSV that can be turned into Pivot tables as required
-
-## Sample Output
-
-tbd
 
 ## Why is this program needed?
 
@@ -85,6 +83,24 @@ Example:
 ```bash
 go run cmd/main.go
 ```
+
+### 4. Create reports from the output
+
+Create pivot tables from the data in whatever fashion you prefer. Below are a couple of sample executive views:
+
+### Price
+
+Filter: Portfolio, Platform, ProductName
+Rows: ReportingCategory, ReportingSubCategory
+Columns: SummaryCategory
+Values: Sum of summaryQuantity
+
+### Quantity
+
+Filter: Portfolio, Platform, ProductName
+Rows: ReportingCategory, ReportingSubCategory
+Columns: SummaryCategory
+Values: Sum of CostInBillingCurrency
 
 ## Sample execution output
 
