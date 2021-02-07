@@ -23,13 +23,15 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 	cnt := 0
 
-	AggregateTotal.init()
-	AggregatePlatform.init()
+	//AggregateTotal.init()
+	//AggregatePlatform.init()
 	AggregateResourceGroup.init()
 
 	var uom string
 	var cat, subcat string
 	var plat, portfolio string
+	var summaryCategory, quantityDivisor string
+	var divisor float64
 
 	if err == nil {
 
@@ -77,10 +79,22 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				if ok3 {
 					uom = pmi.UnitOfMeasure
 				} else {
-					uom = l.UnitOfMeasure + "?"
+					uom = l.UnitOfMeasure
+				}
+
+				scli, ok2 := SummaryCategoryLookup.get(cat, subcat, uom)
+				if ok2 {
+					summaryCategory = scli.Summary
+					quantityDivisor = scli.QuantityDivisor
+					divisor = SummaryCategoryLookup.getDivisor(quantityDivisor, l.BillingPeriodEndDate)
+				} else {
+					summaryCategory = "Other"
+					summaryCategory = "Other"
+					divisor = 1.0
 				}
 
 				quantity := l.Quantity
+				summaryQuantity := l.Quantity / divisor
 
 				// adjust quantity for managed disks
 				// note its not perfect, because selecting performance option for a
@@ -88,13 +102,11 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				if l.MeterCategory[len(l.MeterCategory)-5:] == " Disks" {
 					mdli, ok4 := ManagedDiskLookup.get(l.MeterName)
 					if ok4 {
-						quantity = float64(mdli.SizeGB) * l.Quantity
+						summaryQuantity = float64(mdli.SizeGB) * l.Quantity / divisor
 					}
 				}
 
-				AggregateTotal.add(cat, subcat, uom, quantity, l.CostInBillingCurrency)
-				AggregatePlatform.add(cat, subcat, portfolio, plat, uom, quantity, l.CostInBillingCurrency)
-				AggregateResourceGroup.add(cat, subcat, portfolio, plat, uom, quantity, l)
+				AggregateResourceGroup.add(cat, subcat, portfolio, plat, uom, summaryCategory, quantityDivisor, summaryQuantity, quantity, l)
 
 				if mod(cnt, 100000) == 0 {
 					observability.Logger("Info", fmt.Sprintf("Processed %d rows of billing CSV", cnt))
@@ -103,14 +115,8 @@ func (bcsv *BillingCSV) ProcessFile() error {
 			}
 		}
 
-		AggregateTotal.print(1000)
-
-		outputAggregateTotalCsvFile := ConfigMap.WorkingDirectory + ConfigMap.OutputAggregateTotalCsvFile
-		outputAggregatePlatformCsvFile := ConfigMap.WorkingDirectory + ConfigMap.OutputAggregatePlatformCsvFile
 		outputAggregateRGCsvFile := ConfigMap.WorkingDirectory + ConfigMap.OutputAggregateRGCsvFile
 
-		AggregateTotal.WriteFile(outputAggregateTotalCsvFile)
-		AggregatePlatform.WriteFile(outputAggregatePlatformCsvFile)
 		AggregateResourceGroup.WriteFile(outputAggregateRGCsvFile)
 
 		t1.EndAndPrint(true)

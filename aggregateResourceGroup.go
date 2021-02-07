@@ -28,7 +28,7 @@ func (aggrg *aggregateResourceGroup) init() {
 	aggrg.items = make(map[string]*aggregateResourceGroupItem)
 }
 
-func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory, portfolio, platform string, unitOfMeasure string, quantity float64, l billingLine) {
+func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory, portfolio, platform, unitOfMeasure, summaryCategory, quantityDivisor string, summaryQuantity, quantity float64, l billingLine) {
 
 	key := fmt.Sprintf("%s:%s:%s:%s:%s:%s", reportingCategory, reportingSubCategory, l.SubscriptionId, l.ResourceGroup, l.MeterId, unitOfMeasure)
 
@@ -40,16 +40,22 @@ func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory
 
 		// if not found initialise
 		argi := aggregateResourceGroupItem{}
-		argi.Platform = platform
-		argi.portfolio = portfolio
+		// key fields
 		argi.reportingCategory = reportingCategory
 		argi.reportingSubCategory = reportingSubCategory
-		argi.UnitOfMeasure = unitOfMeasure
-		argi.CostInBillingCurrency = 0
-		argi.Quantity = 0
 		argi.SubscriptionId = l.SubscriptionId
 		argi.ResourceGroup = l.ResourceGroup
 		argi.MeterId = l.MeterId
+		argi.UnitOfMeasure = unitOfMeasure
+		// core values
+		argi.summaryCategory = summaryCategory
+		argi.quantityDivisor = quantityDivisor
+		argi.portfolio = portfolio
+		argi.Platform = platform
+		argi.summaryQuantity = 0
+		argi.Quantity = 0
+		argi.CostInBillingCurrency = 0
+		// detail for deep dive
 		argi.ResourceLocation = l.ResourceLocation
 		argi.ProductName = l.ProductName
 		argi.MeterCategory = l.MeterCategory
@@ -59,7 +65,6 @@ func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory
 		argi.EffectivePrice = l.EffectivePrice
 		argi.CostCenter = l.CostCenter
 		argi.ConsumedService = l.ConsumedService
-		argi.ResourceId = l.ResourceId
 		argi.ReservationId = l.ReservationId
 		argi.Term = l.Term
 		argi.UnitPrice = l.UnitPrice
@@ -67,6 +72,7 @@ func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory
 		aggrg.items[key] = &argi
 	}
 
+	aggrg.items[key].summaryQuantity += summaryQuantity
 	aggrg.items[key].Quantity += quantity
 	aggrg.items[key].CostInBillingCurrency += l.CostInBillingCurrency
 }
@@ -86,10 +92,12 @@ func (aggrg *aggregateResourceGroup) check(e error) {
 
 func (aggrg *aggregateResourceGroup) getCSVHeader() []byte {
 	return []byte(fmt.Sprintf(
-		"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
-		"reportingCategory", "reportingSubCategory", "Portfolio", "Platform", "SubscriptionId", "ResourceGroup", "MeterId", "UnitOfMeasure",
-		"ProductName", "ResourceLocation", "MeterCategory", "MeterSubCategory", "MeterName", "MeterRegion",
-		"EffectivePrice", "CostCenter", "ConsumedService", "ResourceId", "ReservationId", "Term", "Quantity", "UnitPrice", "CostInBillingCurrency"))
+		"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
+		"reportingCategory", "reportingSubCategory", "SubscriptionId", "ResourceGroup", "MeterId", "UnitOfMeasure",
+		"SummaryCategory", "quantityDivisor", "Portfolio", "Platform",
+		"summaryQuantity", "Quantity", "CostInBillingCurrency", "UnitPrice",
+		"ResourceLocation", "ProductName", "MeterCategory", "MeterSubCategory", "MeterName", "MeterRegion",
+		"EffectivePrice", "CostCenter", "ConsumedService", "ReservationId", "Term"))
 }
 
 func (aggrg *aggregateResourceGroup) WriteCSVHeader(w io.Writer) {
@@ -105,10 +113,12 @@ func (aggrg *aggregateResourceGroup) WriteCSVOutput(w io.Writer) {
 	for _, v := range aggrg.items {
 
 		csvRow = fmt.Sprintf(
-			"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%f\",\"%s\",\"%f\"\n",
-			v.reportingCategory, v.reportingSubCategory, v.portfolio, v.Platform, v.SubscriptionId, v.ResourceGroup, v.MeterId, v.UnitOfMeasure,
-			v.ProductName, v.ResourceLocation, v.MeterCategory, v.MeterSubCategory, v.MeterName, v.MeterRegion,
-			v.EffectivePrice, v.CostCenter, v.ConsumedService, v.ResourceId, v.ReservationId, v.Term, v.Quantity, v.UnitPrice, v.CostInBillingCurrency)
+			"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%f\",\"%f\",\"%f\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\"\n",
+			v.reportingCategory, v.reportingSubCategory, v.SubscriptionId, v.ResourceGroup, v.MeterId, v.UnitOfMeasure,
+			v.summaryCategory, v.quantityDivisor, v.portfolio, v.Platform,
+			v.summaryQuantity, v.Quantity, v.CostInBillingCurrency, v.UnitPrice,
+			v.ResourceLocation, v.ProductName, v.MeterCategory, v.MeterSubCategory, v.MeterName, v.MeterRegion,
+			v.EffectivePrice, v.CostCenter, v.ConsumedService, v.ReservationId, v.Term)
 
 		_, err := w.Write([]byte(csvRow))
 		aggrg.check(err)

@@ -13,23 +13,26 @@ type aggregateResourceGroupItem struct {
 	SubscriptionId       string
 	ResourceGroup        string
 	MeterId              string
-	//
+	// core values
+	summaryCategory       string
+	quantityDivisor       string
 	portfolio             string
 	Platform              string
-	ResourceLocation      string
-	ProductName           string
-	MeterCategory         string
-	MeterSubCategory      string
-	MeterName             string
-	MeterRegion           string
-	UnitOfMeasure         string
-	EffectivePrice        string
+	summaryQuantity       float64
 	CostInBillingCurrency float64
-	CostCenter            string
-	ConsumedService       string
-	ResourceId            string
-	ReservationId         string
-	Term                  string
-	Quantity              float64
-	UnitPrice             string
+	// detail for deep dive
+	ResourceLocation string
+	ProductName      string
+	MeterCategory    string
+	MeterSubCategory string
+	MeterName        string
+	MeterRegion      string
+	UnitOfMeasure    string
+	EffectivePrice   string
+	CostCenter       string
+	ConsumedService  string
+	ReservationId    string
+	Term             string
+	Quantity         float64
+	UnitPrice        string
 }

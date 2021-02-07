@@ -1,5 +1,5 @@
 ﻿MeterCategory,ReportingCategory,ReportingSubCategory
-Azure Purview,Vendor PaaS,n/a
+Azure Purview,Specialist PaaS,n/a
 Azure Active Directory for External Identities,Identity,n/a
 Visual Studio Subscription,Development,n/a
 Automation,Automation,n/a
@@ -19,7 +19,7 @@ Azure App Service,Compute Paas,Non-containerised Serverless
 Scheduler,Compute PaaS,Scheduler
 Functions,Compute PaaS,Serverless Functions
 Logic Apps,Compute PaaS,Serverless Functions
-Azure Bot Service,Compute PaaS,n/a
+Azure Bot Service,Specialist PaaS,n/a
 Azure Data Explorer,Data PaaS,Compute
 Azure Data Factory,Data PaaS,Compute
 Azure Data Factory v2,Data PaaS,Compute
@@ -53,7 +53,7 @@ VPN Gateway,Network,n/a
 Application Insights,Observability,n/a
 Azure Monitor,Observability,n/a
 Log Analytics,Observability,n/a
-App Configuration,Paas,Serverless
+App Configuration,Specialist PaaS,n/a
 Advanced Data Security,Security,n/a
 Advanced Threat Protection,Security,n/a
 API Management,Security,n/a
@@ -67,15 +67,15 @@ Azure NetApp Files,Storage,n/a
 Storage,Storage,n/a
 StorSimple,Storage,n/a
 Unassigned,Unassigned,n/a
-Azure Analysis Services,Vendor PaaS,n/a
-Azure Cognitive Search,Vendor PaaS,n/a
-Azure Maps,Vendor Paas,n/a
-Cloud Services,Vendor PaaS,n/a
-Cognitive Services,Vendor PaaS,n/a
-HDInsight,Vendor PaaS,n/a
-Insight and Analytics,Vendor PaaS,n/a
-IoT Hub,Vendor PaaS,n/a
-Machine Learning Studio,Vendor PaaS,n/a
-Stream Analytics,Vendor PaaS,n/a
-Time Series Insights,Vendor PaaS,n/a
-Visual Studio Codespaces,Vendor PaaS,n/a
+Azure Analysis Services,Specialist PaaS,n/a
+Azure Cognitive Search,Specialist PaaS,n/a
+Azure Maps,Specialist PaaS,n/a
+Cloud Services,Specialist PaaS,n/a
+Cognitive Services,Specialist PaaS,n/a
+HDInsight,Specialist PaaS,n/a
+Insight and Analytics,Specialist PaaS,n/a
+IoT Hub,Specialist PaaS,n/a
+Machine Learning Studio,Specialist PaaS,n/a
+Stream Analytics,Specialist PaaS,n/a
+Time Series Insights,Specialist PaaS,n/a
+Visual Studio Codespaces,Specialist PaaS,n/a

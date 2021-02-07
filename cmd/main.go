@@ -33,6 +33,7 @@ func main() {
 	azureBilling.ManagedDiskLookup.Read(lookupDirectory + "managedDisks.csv")
 	azureBilling.PlatformMapLookup.Read(lookupDirectory + "platformMap.csv")
 	azureBilling.ReportingCategoryLookup.Read(lookupDirectory + "reportingCategories.csv")
+	azureBilling.SummaryCategoryLookup.Read(lookupDirectory + "summaryCategories.csv")
 
 	// 6514840 records in test file in 5 mins
 	bcsv := azureBilling.BillingCSV{}
