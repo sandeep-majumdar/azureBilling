@@ -1,13 +1,10 @@
 {
     "workingDirectory": "/mnt/c/Users/nnn/Downloads/",
-	"billingCSVFile": "ActualCostMtD_174c3ad5-77af-4e8d-824d-52f47a1f84dd.csv",
+	"billingCSVFile": "ActualCostMtD_174c3ad5-7777-4e8d-824d-52f47a1f84dd.csv",
 	"azurePricesCSVFile": "azurePrices.csv",
 	"billingCSVMaxDate": "31/01/2021",
 	"NumDaysInMonth": "31",
 	"lookupDirectory": "./lookups/",
-	//"outputAggregateTotalCSVFile": "aggregateTotals.csv",
-	//"outputAggregatePlatformCSVFile": "aggregatePlatform.csv",
 	"outputAzurePricesCSVFile": "azurePrices.csv",
-	"outputAggregateRGCSVFile": "aggregateRG.csv",
-	"outputSummaryCsvFile": "execSummary.csv"
+	"outputAggregateRGCSVFile": "aggregateRG.csv"
 }

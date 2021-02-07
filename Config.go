@@ -16,7 +16,6 @@ type Config struct {
 	NumDaysInMonth           string `json:"numDaysInMonth"`
 	LookupDirectory          string `json:"lookupDirectory"`
 	OutputAggregateRGCsvFile string `json:"outputAggregateRGCsvFile"`
-	OutputSummaryCsvFile     string `json:"outputSummaryCsvFile"`
 }
 
 func (cfg *Config) LoadConfiguration(file string) {
