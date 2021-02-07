@@ -115,7 +115,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 					Compute IaaS,Virtual Machines,n/a,Memory (GB),n/a
 				*/
 
-				if cat == "Compute IaaS" && subcat == "Virtual Machines" && summaryCategory == "Count" {
+				if cat == "Compute IaaS" && subcat == "Virtual Machines" && summaryCategory == "ResourceUnits" {
 
 					if ok3 {
 						// observability.Logger("Info", fmt.Sprintf("sku=%s armsku=%s", pmi.SkuName, pmi.ArmSkuName))
