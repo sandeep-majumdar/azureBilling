@@ -18,6 +18,7 @@ type aggregateResourceGroupItem struct {
 	quantityDivisor       string
 	portfolio             string
 	Platform              string
+	EnvironmentType       string
 	summaryQuantity       float64
 	CostInBillingCurrency float64
 	// detail for deep dive

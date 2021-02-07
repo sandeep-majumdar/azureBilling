@@ -27,7 +27,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 	var uom string
 	var cat, subcat string
-	var plat, portfolio string
+	var plat, portfolio, envType string
 	var summaryCategory, quantityDivisor string
 	var divisor float64
 
@@ -68,9 +68,11 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				if ok2 {
 					portfolio = plmi.portfolio
 					plat = plmi.platform
+					envType = plmi.environmentType
 				} else {
 					portfolio = "Other"
 					plat = "Other"
+					envType = "Other"
 				}
 
 				pmi, ok3 := MeterLookup.get(l.MeterId)
@@ -104,7 +106,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 					}
 				}
 
-				AggregateResourceGroup.add(cat, subcat, portfolio, plat, uom, summaryCategory, quantityDivisor, summaryQuantity, quantity, l)
+				AggregateResourceGroup.add(cat, subcat, portfolio, plat, envType, uom, summaryCategory, quantityDivisor, summaryQuantity, quantity, l)
 
 				/*
 					When we see a vm being used, calculate Cores and Memory from the Count
@@ -127,8 +129,8 @@ func (bcsv *BillingCSV) ProcessFile() error {
 							memgb := l.Quantity * float64(vmli.MemGB) / divisor
 
 							// set quantity = 0 because these dont exist in the source csv
-							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "CPU", "CPU", quantityDivisor, cores, 0, l)
-							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "MemGB", "Memory (GB)", quantityDivisor, memgb, 0, l)
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, envType, "CPU", "CPU", quantityDivisor, cores, 0, l)
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, envType, "MemGB", "MemGB", quantityDivisor, memgb, 0, l)
 
 						} else {
 							// logging happens in VmSizeLookup
