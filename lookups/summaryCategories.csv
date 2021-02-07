@@ -11,7 +11,7 @@ Compute IaaS,Disaster Recovery,Other,Other,1
 Compute IaaS,Licences,1 Hour,Count,NumDaysInMonthTimes24Hrs
 Compute IaaS,Licences,Other,Other,1
 Compute IaaS,Network,1/Month,Count,1
-Compute IaaS,Network,1 Hour,Count,1
+Compute IaaS,Network,1 Hour,Count,NumDaysInMonthTimes24Hrs
 Compute IaaS,Network,1 GB,Data Transfer (GB),1
 Compute IaaS,Network,Other,Other,1
 Compute IaaS,Virtual Machines,1 Hour,Count,NumDaysInMonthTimes24Hrs

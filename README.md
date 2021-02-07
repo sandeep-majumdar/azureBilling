@@ -24,7 +24,9 @@ When put together the failings of UnitOfMeasure and Quantity are large enough to
 
 ### 1. Customise the lookup CSVs
 
-*managedDisks.csv* is the lookup for managed disk names providing the SizeGB. Note There is a challenge with "performance-enabled" managed disks, which will report the size of the underlying disk rather than the available volume
+#### managedDisks.csv
+
+The lookup for managed disk names providing the SizeGB. Note There is a challenge with "performance-enabled" managed disks, which will report the size of the underlying disk rather than the available volume
 
 #### platformMap.csv
 
