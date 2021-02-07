@@ -1,4 +1,4 @@
-﻿ReportingCategory,ReportingSubCategory,UnitOfMeasure,Summary,QuantityDivisor
+ReportingCategory,ReportingSubCategory,UnitOfMeasure,Summary,QuantityDivisor
 Automation,n/a,1/Month,Count,1
 Automation,n/a,Other,Other,1
 Backup,n/a,1/Month,Count,1
@@ -16,7 +16,7 @@ Compute IaaS,Network,1 GB,Data Transfer (GB),1
 Compute IaaS,Network,Other,Other,1
 Compute IaaS,Virtual Machines,1 Hour,Count,NumDaysInMonthTimes24Hrs
 Compute IaaS,Virtual Machines,n/a,CPU,n/a
-Compute IaaS,Virtual Machines,n/a,Memory (GB),n/a
+Compute IaaS,Virtual Machines,n/a,MemGB,n/a
 Compute IaaS,Virtual Machines,Other,Other,1
 Compute Paas,Containerised Serverless,1 Hour,CPU,NumDaysInMonthTimes24Hrs
 Compute Paas,Containerised Serverless,1 GB Hour,Duration (Hrs),1

@@ -107,6 +107,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				AggregateResourceGroup.add(cat, subcat, portfolio, plat, uom, summaryCategory, quantityDivisor, summaryQuantity, quantity, l)
 
 				/*
+					When we see a vm being used, calculate Cores and Memory from the Count
 					Compute IaaS,Virtual Machines,1 Hour,Count,NumDaysInMonthTimes24Hrs
 					Compute IaaS,Virtual Machines,n/a,CPU,n/a
 					Compute IaaS,Virtual Machines,n/a,Memory (GB),n/a
@@ -122,11 +123,15 @@ func (bcsv *BillingCSV) ProcessFile() error {
 						if ok5 {
 
 							// observability.Logger("Info", fmt.Sprintf("Matched ArmSkuName=%s", pmi.ArmSkuName))
-							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "CPU", summaryCategory, quantityDivisor, float64(vmli.Cores), quantity, l)
-							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "Memory (GB)", summaryCategory, quantityDivisor, float64(vmli.MemGB), quantity, l)
+							cores := l.Quantity * float64(vmli.Cores) / divisor
+							memgb := l.Quantity * float64(vmli.MemGB) / divisor
+
+							// set quantity = 0 because these dont exist in the source csv
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "CPU", "CPU", quantityDivisor, cores, 0, l)
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, "MemGB", "Memory (GB)", quantityDivisor, memgb, 0, l)
 
 						} else {
-							//observability.Logger("Info", fmt.Sprintf("Unable to match ArmSkuName=%s", pmi.ArmSkuName))
+							// logging happens in VmSizeLookup
 						}
 
 					} else {

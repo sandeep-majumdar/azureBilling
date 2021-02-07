@@ -64,6 +64,8 @@ func (vml *vmLookup) Read(fileLocation string) error {
 				i.setValues(record)
 
 				vml.items[strings.ToLower(i.VM)] = i
+
+				//observability.Logger("Info", fmt.Sprintf("i=%v", i))
 			}
 
 		}
@@ -83,7 +85,7 @@ func (vml *vmLookup) get(vmName string) (vmLookupItem, bool) {
 
 	vmli, ok := vml.items[key]
 	if !ok {
-		observability.Logger("Error", fmt.Sprintf("Unable to find reportingCategoryLookupItem for key=%s", key))
+		observability.Logger("Error", fmt.Sprintf("Unable to find vmLookupItem for key=\"%s\"", key))
 	}
 
 	return vmli, ok

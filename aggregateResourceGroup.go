@@ -74,7 +74,12 @@ func (aggrg *aggregateResourceGroup) add(reportingCategory, reportingSubCategory
 
 	aggrg.items[key].summaryQuantity += summaryQuantity
 	aggrg.items[key].Quantity += quantity
-	aggrg.items[key].CostInBillingCurrency += l.CostInBillingCurrency
+
+	// if its program generated e.g. {CPU,MemGB} we've already added the cost under the original value
+	if unitOfMeasure != "CPU" && unitOfMeasure != "MemGB" {
+		aggrg.items[key].CostInBillingCurrency += l.CostInBillingCurrency
+	}
+
 }
 
 /*

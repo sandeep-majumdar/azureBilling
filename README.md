@@ -2,9 +2,9 @@
 
 This product offers a solution to enable executive reporting for Azure Billing in terms they should understand
 
-The target scope of the output is to obtain Price (P) and Quantity (Q) by org unit/functional area/product. 
+The target scope of the output is to obtain Price (P) and Quantity (Q) by org unit/functional area/product.
 
-Many other views are possible
+Many other views are possible!
 
 The output is in the form of a resource group level aggregate CSV that can be turned into Pivot tables as required
 
@@ -79,6 +79,8 @@ Example:
 ```
 
 ### 3. Clone and run the code
+
+With core i7 and SSD you can expect ~3.5mins per 1 million records
 
 ```bash
 go run cmd/main.go
