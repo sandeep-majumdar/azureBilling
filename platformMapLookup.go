@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 
 	"github.com/adeturner/observability"
 )
@@ -34,6 +35,8 @@ func (pml *platformMapLookup) Read(fileLocation string) error {
 
 	pml.init()
 
+	var key string
+
 	f, err := os.Open(fileLocation)
 	if err != nil {
 		observability.Logger("Error", fmt.Sprintf("Unable to read input file=%s err=%s", fileLocation, err))
@@ -62,7 +65,8 @@ func (pml *platformMapLookup) Read(fileLocation string) error {
 				i := platformMapLookupItem{}
 				i.setValues(record)
 
-				pml.items[i.subscriptionId+"/"+i.rgName] = i
+				key = pml.getKey(i.subscriptionId, i.rgName)
+				pml.items[key] = i
 			}
 		}
 	}
@@ -75,9 +79,13 @@ func (pml *platformMapLookup) Read(fileLocation string) error {
 
 }
 
+func (pml *platformMapLookup) getKey(subscriptionId, rgName string) string {
+	return strings.ToLower(fmt.Sprintf(":%s:%s:", subscriptionId, rgName))
+}
+
 func (pml *platformMapLookup) get(subscriptionId, rgName string) (platformMapLookupItem, bool) {
 
-	key := fmt.Sprintf("%s/%s", subscriptionId, rgName)
+	key := pml.getKey(subscriptionId, rgName)
 
 	pmli, ok := pml.items[key]
 	if !ok {

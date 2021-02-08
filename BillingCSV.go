@@ -27,7 +27,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 	var uom string
 	var cat, subcat string
-	var plat, portfolio, envType string
+	var plat, portfolio, product, envType string
 	var summaryCategory, quantityDivisor string
 	var divisor float64
 
@@ -68,11 +68,13 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				if ok2 {
 					portfolio = plmi.portfolio
 					plat = plmi.platform
+					product = plmi.productCode
 					envType = plmi.environmentType
 				} else {
 					portfolio = "Other"
 					plat = "Other"
 					envType = "Other"
+					product = "Other"
 				}
 
 				pmi, ok3 := MeterLookup.get(l.MeterId)
@@ -106,7 +108,12 @@ func (bcsv *BillingCSV) ProcessFile() error {
 					}
 				}
 
-				AggregateResourceGroup.add(cat, subcat, portfolio, plat, envType, uom, summaryCategory, quantityDivisor, summaryQuantity, quantity, l)
+				// For databases, we will ignore DTUs etc and just count the line items
+				if cat == "Data PaaS" && subcat == "Database" && summaryCategory == "ResourceUnits" {
+					summaryQuantity = 1.0 / divisor
+				}
+
+				AggregateResourceGroup.add(cat, subcat, portfolio, plat, product, envType, uom, summaryCategory, quantityDivisor, summaryQuantity, quantity, l)
 
 				/*
 					When we see a vm being used, calculate Cores and Memory from the Count
@@ -129,8 +136,8 @@ func (bcsv *BillingCSV) ProcessFile() error {
 							memgb := l.Quantity * float64(vmli.MemGB) / divisor
 
 							// set quantity = 0 because these dont exist in the source csv
-							AggregateResourceGroup.add(cat, subcat, portfolio, plat, envType, "CPU", "CPU", quantityDivisor, cores, 0, l)
-							AggregateResourceGroup.add(cat, subcat, portfolio, plat, envType, "MemGB", "MemGB", quantityDivisor, memgb, 0, l)
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, product, envType, "CPU", "CPU", quantityDivisor, cores, 0, l)
+							AggregateResourceGroup.add(cat, subcat, portfolio, plat, product, envType, "MemGB", "MemGB", quantityDivisor, memgb, 0, l)
 
 						} else {
 							// logging happens in VmSizeLookup
