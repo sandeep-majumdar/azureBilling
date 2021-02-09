@@ -63,7 +63,7 @@ func (vml *vmLookup) Read(fileLocation string) error {
 				i := vmLookupItem{}
 				i.setValues(record)
 
-				vml.items[strings.ToLower(i.VM)] = i
+				vml.items[vml.getKey(i.VM)] = i
 
 				//observability.Logger("Info", fmt.Sprintf("i=%v", i))
 			}
@@ -79,9 +79,13 @@ func (vml *vmLookup) Read(fileLocation string) error {
 
 }
 
+func (vml *vmLookup) getKey(vmName string) string {
+	return fmt.Sprintf(":%s:", strings.ToLower(vmName))
+}
+
 func (vml *vmLookup) get(vmName string) (vmLookupItem, bool) {
 
-	key := fmt.Sprintf("%s", strings.ToLower(vmName))
+	key := vml.getKey(vmName)
 
 	vmli, ok := vml.items[key]
 	if !ok {

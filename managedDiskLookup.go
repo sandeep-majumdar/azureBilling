@@ -35,6 +35,8 @@ func (mdl *managedDiskLookup) Read(fileLocation string) error {
 
 	mdl.init()
 
+	var key string
+
 	f, err := os.Open(fileLocation)
 	if err != nil {
 		observability.Logger("Error", fmt.Sprintf("Unable to read input file=%s err=%s", fileLocation, err))
@@ -63,7 +65,8 @@ func (mdl *managedDiskLookup) Read(fileLocation string) error {
 				i := managedDiskLookupItem{}
 				i.setValues(record)
 
-				mdl.items[strings.ToLower(i.MeterName)] = i
+				key = mdl.getKey(i.MeterName)
+				mdl.items[strings.ToLower(key)] = i
 			}
 		}
 	}
@@ -76,9 +79,13 @@ func (mdl *managedDiskLookup) Read(fileLocation string) error {
 
 }
 
+func (mdl *managedDiskLookup) getKey(meterName string) string {
+	return strings.ToLower(fmt.Sprintf(":%s:", meterName))
+}
+
 func (mdl *managedDiskLookup) get(meterName string) (managedDiskLookupItem, bool) {
 
-	key := fmt.Sprintf("%s", meterName)
+	key := mdl.getKey(meterName)
 
 	mdli, ok := mdl.items[key]
 	if !ok {

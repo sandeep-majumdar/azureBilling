@@ -2,6 +2,7 @@ package azureBilling
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/adeturner/observability"
 )
@@ -55,6 +56,8 @@ func (pm *priceMeter) add(i PriceItem) {
 
 	itemDate, err := dateStrToTime(i.EffectiveStartDate)
 
+	var key string
+
 	// added b = true to bypass date checks temporarily (maybe forever...)
 	b := true
 
@@ -66,21 +69,26 @@ func (pm *priceMeter) add(i PriceItem) {
 
 			v := priceMeterItem{}
 			v.setValues(i)
+			key = pm.getKey(i.MeterId)
 
 			// if the meterid date is not set, set it to the item effective date
-			if b || pm.items[i.MeterId].EffectiveStartDate.IsZero() ||
-				pm.items[i.MeterId].EffectiveStartDate.After(itemDate) {
+			if b || pm.items[key].EffectiveStartDate.IsZero() ||
+				pm.items[key].EffectiveStartDate.After(itemDate) {
 
-				pm.items[i.MeterId] = v
+				pm.items[key] = v
 			}
 		}
 	}
 
 }
 
+func (pm *priceMeter) getKey(meterId string) string {
+	return strings.ToLower(fmt.Sprintf(":%s:", meterId))
+}
+
 func (pm *priceMeter) get(meterId string) (priceMeterItem, bool) {
 
-	key := fmt.Sprintf("%s", meterId)
+	key := pm.getKey(meterId)
 
 	rcli, ok := pm.items[key]
 	if !ok {

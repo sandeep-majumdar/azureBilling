@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"strings"
 
 	"github.com/adeturner/observability"
 )
@@ -34,6 +35,8 @@ func (rcl *reportingCategoryLookup) Read(fileLocation string) error {
 
 	rcl.init()
 
+	var key string
+
 	f, err := os.Open(fileLocation)
 	if err != nil {
 		observability.Logger("Error", fmt.Sprintf("Unable to read input file=%s err=%s", fileLocation, err))
@@ -62,7 +65,8 @@ func (rcl *reportingCategoryLookup) Read(fileLocation string) error {
 				i := reportingCategoryLookupItem{}
 				i.setValues(record)
 
-				rcl.items[i.meterCategory] = i
+				key = rcl.getKey(i.meterCategory)
+				rcl.items[key] = i
 			}
 		}
 	}
@@ -75,9 +79,13 @@ func (rcl *reportingCategoryLookup) Read(fileLocation string) error {
 
 }
 
+func (rcl *reportingCategoryLookup) getKey(meterCategory string) string {
+	return strings.ToLower(fmt.Sprintf(":%s:", meterCategory))
+}
+
 func (rcl *reportingCategoryLookup) get(meterCategory string) (reportingCategoryLookupItem, bool) {
 
-	key := fmt.Sprintf("%s", meterCategory)
+	key := rcl.getKey(meterCategory)
 
 	rcli, ok := rcl.items[key]
 	if !ok {
