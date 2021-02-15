@@ -1,91 +1,116 @@
 ReportingCategory,ReportingSubCategory,UnitOfMeasure,Summary,QuantityDivisor
-Automation,n/a,1/Month,ResourceUnits,1
-Automation,n/a,Other,Other,1
-Backup,n/a,1/Month,ResourceUnits,1
-Backup,n/a,Other,Other,1
-Backup,n/a,1 GB/Month,Storage (GB),1
-Compute IaaS,Bastion,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Compute IaaS,Bastion,Other,Other,1
-Compute IaaS,Disaster Recovery,1/Month,ResourceUnits,1
-Compute IaaS,Disaster Recovery,Other,Other,1
-Compute IaaS,Licences,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Compute IaaS,Licences,Other,Other,1
-Compute IaaS,Network,1/Month,ResourceUnits,1
-Compute IaaS,Network,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Compute IaaS,Network,1 GB,Data Transfer (GB),1
-Compute IaaS,Network,Other,Other,1
-Compute IaaS,Virtual Machines,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Compute IaaS,Virtual Machines,n/a,CPU,n/a
-Compute IaaS,Virtual Machines,n/a,MemGB,n/a
-Compute IaaS,Virtual Machines,Other,Other,1
-Compute Paas,Containerised Serverless,1 Hour,CPU,NumDaysInMonthTimes24Hrs
-Compute Paas,Containerised Serverless,1 GB Hour,Duration (Hrs),1
-Compute Paas,Containerised Serverless,Other,Other,1
-Compute PaaS,Network,1/Month,ResourceUnits,1
-Compute PaaS,Network,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Compute PaaS,Network,1 GB,Data Transfer (GB),1
-Compute PaaS,Network,Other,Other,1
-Compute Paas,Non-containerised Serverless,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Compute Paas,Non-containerised Serverless,Other,Other,1
-Compute PaaS,Scheduler,1/Month,ResourceUnits,1
-Compute PaaS,Scheduler,Other,Other,1
-Compute PaaS,Serverless Functions,1 GB Second,Duration (Hrs),3600
-Compute PaaS,Serverless Functions,1 GiB Hour,Duration (Hrs),1
-Compute PaaS,Serverless Functions,1 Hour,Duration (Hrs),1
-Compute PaaS,Serverless Functions,1,Execs/Ops (Mil),1000000
-Compute PaaS,Serverless Functions,10,Execs/Ops (Mil),100000
-Compute PaaS,Serverless Functions,Other,Other,1
-Compute PaaS,Serverless Functions,1 GB/Month,Storage (GB),1
-Compute PaaS,n/a,Other,Other,1
-Data PaaS,Compute,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Data PaaS,Compute,1K,Execs/Ops (Mil),1000
-Data PaaS,Compute,50K,Execs/Ops (Mil),20
-Data PaaS,Compute,1 Hour,Duration (Hrs),1
-Data PaaS,Compute,Other,Other,1
-Data PaaS,Database,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Data PaaS,Database,1/Day,ResourceUnits,NumDaysInMonth
-Data PaaS,Database,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Data PaaS,Database,10K,Execs/Ops (Mil),100
-Data PaaS,Database,1M,Execs/Ops (Mil),1
-Data PaaS,Database,Other,Other,1
-Data PaaS,Database,1 Day,PrePay (Days),1
-Data PaaS,Database,1 GB/Month,Storage (GB),1
-Data PaaS,Events,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Data PaaS,Events,1/Day,ResourceUnits,NumDaysInMonth
-Data PaaS,Events,100K,Execs/Ops (Mil),10
-Data PaaS,Events,1M,Execs/Ops (Mil),1
-Data PaaS,Events,Other,Other,1
-Development,n/a,1,ResourceUnits,1
-Development,n/a,Other,Other,1
-Identity,n/a,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Identity,n/a,1/Month,Execs/Ops (Mil),1
-Identity,n/a,Other,Other,1
-Network,n/a,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Network,n/a,1/Month,ResourceUnits,1
-Network,n/a,1 GB,Data Transfer or Processing (GB),1
-Network,n/a,Other,Other,1
-Observability,n/a,1/Day,ResourceUnits,NumDaysInMonth
-Observability,n/a,1/Month,ResourceUnits,1
-Observability,n/a,1 GB,Data Transfer or Processing (GB),1
-Observability,n/a,Other,Other,1
-Observability,n/a,1 GB/Month,Storage (GB),1
-Security,n/a,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Security,n/a,1/Day,ResourceUnits,NumDaysInMonth
-Security,n/a,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Security,n/a,1/Month,ResourceUnits,1
-Security,n/a,1GB,Data Transfer or Processing (GB),1
-Security,n/a,10K,Execs/Ops (Mil),100
-Security,n/a,Other,Other,1
-Storage,n/a,1/Day,ResourceUnits,NumDaysInMonth
-Storage,n/a,1 GB,Data Transfer or Processing (GB),1
-Storage,n/a,1M,Execs/Ops (Mil),1
-Storage,n/a,10K,Execs/Ops (Mil),100
-Storage,n/a,Other,Other,1
-Storage,n/a,1/Month,Storage (GB),ManagedDisksOnly
-Storage,n/a,1 GiB/Hour,Storage (GB),NumDaysInMonthTimes24Hrs
-Storage,n/a,1 GB/Month,Storage (GB),1
-Unassigned,n/a,Other,Other,1
-Specialist PaaS,n/a,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Specialist PaaS,n/a,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
-Specialist PaaS,n/a,1/Month,ResourceUnits,1
-Specialist PaaS,n/a,Other,Other,1
+Azure Active Directory for External Identities,*,1/Month,Count,1
+Container PaaS,Containers,1 GB Hour,Duration (GB Hours),1
+Container PaaS,Containers,1 GB/Month,Storage (TB),1024
+Container PaaS,Containers,1 Hour,Duration (Hrs),1
+Container PaaS,Containers,1 Second,Duration (Hrs),3600
+Container PaaS,Containers,1/Day,Count,NumDaysInMonth
+Container PaaS,Security,1,Count,1
+Container PaaS,Security,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Container PaaS,Web,1 Hour,Duration (Hrs),1
+Data PaaS,Analytics,1,Count,1
+Data PaaS,Analytics,1 Day,Duration (Hrs),DayTo24Hours
+Data PaaS,Analytics,1 GB,Data Transfer or Processing (TB),1024
+Data PaaS,Analytics,1 GB/Month,Storage (TB),1024
+Data PaaS,Analytics,1 Hour,Duration (Hrs),1
+Data PaaS,Analytics,1 TB/Month,Storage (TB),1
+Data PaaS,Analytics,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Data PaaS,Analytics,1/Month,Count,1
+Data PaaS,Analytics,1K,Execs/Ops (Mil),1000
+Data PaaS,Analytics,1M,Execs/Ops (Mil),1
+Data PaaS,Cache,1 Hour,Duration (Hrs),1
+Data PaaS,Events,1 Hour,Duration (Hrs),1
+Data PaaS,Files,1 GiB/Hour,Storage (TB),1024
+Data PaaS,Integration,1 Hour,Duration (Hrs),1
+Data PaaS,Integration,1/Month,Count,1
+Data PaaS,Integration,1K,Execs/Ops (Mil),1000
+Data PaaS,Integration,50K,Execs/Ops (Mil),20
+Data PaaS,NoSQL,1 GB/Month,Storage (TB),1024
+Data PaaS,NoSQL,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Data PaaS,NoSQL,10K,Execs/Ops (Mil),100
+Data PaaS,NoSQL,1M,Execs/Ops (Mil),1
+Data PaaS,Processing,1 Hour,Duration (Hrs),1
+Data PaaS,Security,1/Month,Count,1
+Data PaaS,Security,10K,Execs/Ops (Mil),100
+Data PaaS,SQL,1 GB/Month,Storage (TB),1024
+Data PaaS,SQL,1 GiB/Month,Storage (TB),1024
+Data PaaS,SQL,1 Hour,Duration (Hrs),1
+Data PaaS,SQL,1/Day,Count,NumDaysInMonth
+Data PaaS,Storage,1 /Day,Count,NumDaysInMonth
+Data PaaS,Storage,1 GB,Data Transfer or Processing (TB),1024
+Data PaaS,Storage,1 GB/Month,Storage (TB),1024
+Data PaaS,Storage,1/Month,Count,1
+Data PaaS,Storage,10K,Execs/Ops (Mil),100
+Data PaaS,Storage,1M,Execs/Ops (Mil),1
+Developer PaaS,Tooling,1,Count,1
+Developer PaaS,Tooling,1 GB/Month,Storage (TB),1024
+Developer PaaS,Tooling,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Developer PaaS,Tooling,1/Month,Count,1
+IaaS,Compute,1 Hour,Duration (Hrs),1
+IaaS,Licence,1,Count,1
+IaaS,Licence,1 Hour,Duration (Hrs),1
+IaaS,Recovery,1 GB/Month,Storage (TB),1024
+IaaS,Recovery,1/Month,Count,1
+IaaS,Storage,1 GB/Month,Storage (TB),1024
+IaaS,Storage,1/Month,Count,1
+IaaS,Storage,10K,Execs/Ops (Mil),100
+Identity PaaS,Identity,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Identity PaaS,Identity,1/Month,Count,1
+Operational PaaS,Automation,1 Minute,Duration (Hrs),60
+Operational PaaS,Automation,1/Month,Count,1
+Operational PaaS,CDN,1 GB,Data Transfer or Processing (TB),1024
+Operational PaaS,ManagementPerimeter,1/Day,Count,NumDaysInMonth
+Operational PaaS,Monitoring,1,Count,1
+Operational PaaS,Monitoring,10,Count,1
+Operational PaaS,Monitoring,1 GB,Data Transfer or Processing (TB),1024
+Operational PaaS,Monitoring,1 GB/Month,Storage (TB),1024
+Operational PaaS,Monitoring,1/Day,Count,NumDaysInMonth
+Operational PaaS,Monitoring,1/Month,Count,1
+Operational PaaS,Network,1,Count,1
+Operational PaaS,Network,1 GB,Data Transfer or Processing (TB),1024
+Operational PaaS,Network,1 Hour,Duration (Hrs),1
+Operational PaaS,Network,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Operational PaaS,Network,1/Month,Count,1
+Operational PaaS,Network,1M,Execs/Ops (Mil),1
+Security PaaS,InsightsAlerts,1 GB,Data Transfer or Processing (TB),1024
+Security PaaS,InsightsAlerts,1/Day,Count,NumDaysInMonth
+Security PaaS,InsightsAlerts,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Security PaaS,Perimeter,1,Count,1
+Security PaaS,Perimeter,1 GB,Data Transfer or Processing (TB),1024
+Security PaaS,Perimeter,1 Hour,Duration (Hrs),1
+Security PaaS,Perimeter,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Security PaaS,Perimeter,1/Month,Count,1
+Security PaaS,Perimeter,1M,Execs/Ops (Mil),1
+Security PaaS,Perimeter,1M/Month,Execs/Ops (Mil),1
+Security PaaS,PKI,1,Count,1
+Security PaaS,SecretManagement,1,Count,1
+Security PaaS,SecretManagement,10K,Execs/Ops (Mil),100
+Security PaaS,Security,10K,Execs/Ops (Mil),100
+Serverless PaaS,Events,1,Count,1
+Serverless PaaS,Events,1 GB,Data Transfer or Processing (TB),1024
+Serverless PaaS,Events,1 Hour,Duration (Hrs),1
+Serverless PaaS,Events,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Serverless PaaS,Events,100K,Execs/Ops (Mil),10
+Serverless PaaS,Events,1M,Execs/Ops (Mil),1
+Serverless PaaS,Functions,1,Count,1
+Serverless PaaS,Functions,10,Count,1
+Serverless PaaS,Functions,1 GB Second,Duration (GB Hours),3600
+Serverless PaaS,Functions,1 GB/Month,Storage (TB),1024
+Serverless PaaS,Functions,1 GiB Hour,Duration (GB Hours),1
+Serverless PaaS,Functions,1 Hour,Duration (Hrs),1
+Serverless PaaS,Functions,1/Month,Count,1
+Serverless PaaS,Functions,100 GB Seconds,Duration (GB Hours),36
+Serverless PaaS,Functions,100 Seconds,Duration (Hrs),36
+Serverless PaaS,Management,1 Hour,Duration (Hrs),1
+Serverless PaaS,Web,1 Hour,Duration (Hrs),1
+Serverless PaaS,Web,1/Day,Count,NumDaysInMonth
+Specialist PaaS,AI,1 Hour,Duration (Hrs),1
+Specialist PaaS,AI,1/Day,Count,NumDaysInMonth
+Specialist PaaS,AI,1/Month,Count,1
+Specialist PaaS,AI,1K,Execs/Ops (Mil),1000
+Specialist PaaS,AI,1M,Execs/Ops (Mil),1
+Specialist PaaS,Bot,1K,Execs/Ops (Mil),1000
+Specialist PaaS,IOT,1/Month,Count,1
+Specialist PaaS,IOT,1K,Execs/Ops (Mil),1000
+Specialist PaaS,Maps,1K,Execs/Ops (Mil),1000
+Unassigned,n/a,Other,Unassigned,1

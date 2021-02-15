@@ -65,7 +65,7 @@ func (rcl *reportingCategoryLookup) Read(fileLocation string) error {
 				i := reportingCategoryLookupItem{}
 				i.setValues(record)
 
-				key = rcl.getKey(i.meterCategory)
+				key = rcl.getKey(i.meterCategory, i.meterSubCategory)
 				rcl.items[key] = i
 			}
 		}
@@ -79,17 +79,27 @@ func (rcl *reportingCategoryLookup) Read(fileLocation string) error {
 
 }
 
-func (rcl *reportingCategoryLookup) getKey(meterCategory string) string {
-	return strings.ToLower(fmt.Sprintf(":%s:", meterCategory))
+func (rcl *reportingCategoryLookup) getKey(meterCategory, meterSubCategory string) string {
+	return strings.ToLower(fmt.Sprintf(":%s:%s:", meterCategory, meterSubCategory))
 }
 
-func (rcl *reportingCategoryLookup) get(meterCategory string) (reportingCategoryLookupItem, bool) {
+func (rcl *reportingCategoryLookup) get(meterCategory, meterSubCategory string) (reportingCategoryLookupItem, bool) {
 
-	key := rcl.getKey(meterCategory)
+	key := rcl.getKey(meterCategory, meterSubCategory)
 
 	rcli, ok := rcl.items[key]
+
 	if !ok {
-		observability.Logger("Error", fmt.Sprintf("Unable to find reportingCategoryLookupItem for key=%s", key))
+
+		// try again with wildcard
+		key := rcl.getKey(meterCategory, "*")
+
+		rcli, ok = rcl.items[key]
+
+		if !ok {
+			observability.Logger("Error", fmt.Sprintf("Unable to find reportingCategoryLookupItem for key=%s", key))
+		}
+
 	}
 
 	return rcli, ok

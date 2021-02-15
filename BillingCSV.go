@@ -55,7 +55,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				l := billingLine{}
 				l.setValues(record)
 
-				rcli, ok1 := ReportingCategoryLookup.get(l.MeterCategory)
+				rcli, ok1 := ReportingCategoryLookup.get(l.MeterCategory, l.MeterSubCategory)
 				if ok1 {
 					cat = rcli.reportingCategory
 					subcat = rcli.reportingSubCategory
@@ -84,7 +84,7 @@ func (bcsv *BillingCSV) ProcessFile() error {
 					uom = l.UnitOfMeasure
 				}
 
-				scli, ok4 := SummaryCategoryLookup.get(cat, subcat, uom)
+				scli, ok4 := SummaryCategoryLookup.get(cat, subcat, uom, l.MeterCategory, l.MeterSubCategory)
 				if ok4 {
 					summaryCategory = scli.Summary
 					quantityDivisor = scli.QuantityDivisor

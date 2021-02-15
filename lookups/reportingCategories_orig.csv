@@ -1,0 +1,81 @@
+﻿MeterCategory,ReportingCategory,ReportingSubCategory
+Azure Purview,Specialist PaaS,n/a
+Azure Active Directory for External Identities,Identity,n/a
+Visual Studio Subscription,Development,n/a
+Automation,Automation,n/a
+Azure DevOps,Automation,n/a
+Backup,Backup,n/a
+Azure Bastion,Compute IaaS,Bastion
+Azure Site Recovery,Compute IaaS,Disaster Recovery
+Virtual Machines Licenses,Compute IaaS,Licences
+Load Balancer,Compute IaaS,Network
+NAT Gateway,Compute IaaS,Network
+Virtual Network,Compute IaaS,Network
+Virtual Machines,Compute IaaS,Virtual Machines
+Container Instances,Compute Paas,Containerised Serverless
+Container Registry,Compute Paas,Containerised Serverless
+Azure Firewall,Compute PaaS,Network
+Azure App Service,Compute Paas,Non-containerised Serverless
+Scheduler,Compute PaaS,Scheduler
+Functions,Compute PaaS,Serverless Functions
+Logic Apps,Compute PaaS,Serverless Functions
+Azure Bot Service,Specialist PaaS,n/a
+Azure Data Explorer,Data PaaS,Compute
+Azure Data Factory,Data PaaS,Compute
+Azure Data Factory v2,Data PaaS,Compute
+Azure Databricks,Data PaaS,Compute
+Azure Synapse Analytics,Data Paas,Compute
+Data Catalog,Data PaaS,Compute
+Data Lake Analytics,Data PaaS,Compute
+Power BI Embedded,Data PaaS,Compute
+Azure Cosmos DB,Data PaaS,Database
+Azure Database for MySQL,Data PaaS,Database
+Azure Database for PostgreSQL,Data PaaS,Database
+Data Lake Store,Data PaaS,Database
+Redis Cache,Data PaaS,Database
+SQL Data Warehouse,Data PaaS,Database
+SQL Database,Data PaaS,Database
+SQL Managed Instance,Data PaaS,Database
+Event Grid,Data PaaS,Events
+Event Hubs,Data PaaS,Events
+Service Bus,Data PaaS,Events
+SignalR,Data PaaS,Events
+Azure Active Directory B2C,Identity,n/a
+Azure Active Directory Domain Services,Identity,n/a
+Azure DNS,Network,n/a
+Bandwidth,Network,n/a
+Content Delivery Network,Network,n/a
+ExpressRoute,Network,n/a
+Network Watcher,Network,n/a
+Traffic Manager,Network,n/a
+Virtual WAN,Network,n/a
+VPN Gateway,Network,n/a
+Application Insights,Observability,n/a
+Azure Monitor,Observability,n/a
+Log Analytics,Observability,n/a
+App Configuration,Specialist PaaS,n/a
+Advanced Data Security,Security,n/a
+Advanced Threat Protection,Security,n/a
+API Management,Security,n/a
+Application Gateway,Security,n/a
+Azure DDOS Protection,Security,n/a
+Azure Front Door Service,Security,n/a
+Key Vault,Security,n/a
+Security Center,Security,n/a
+Sentinel,Security,n/a
+Azure NetApp Files,Storage,n/a
+Storage,Storage,n/a
+StorSimple,Storage,n/a
+Unassigned,Unassigned,n/a
+Azure Analysis Services,Specialist PaaS,n/a
+Azure Cognitive Search,Specialist PaaS,n/a
+Azure Maps,Specialist PaaS,n/a
+Cloud Services,Specialist PaaS,n/a
+Cognitive Services,Specialist PaaS,n/a
+HDInsight,Specialist PaaS,n/a
+Insight and Analytics,Specialist PaaS,n/a
+IoT Hub,Specialist PaaS,n/a
+Machine Learning Studio,Specialist PaaS,n/a
+Stream Analytics,Specialist PaaS,n/a
+Time Series Insights,Specialist PaaS,n/a
+Visual Studio Codespaces,Specialist PaaS,n/a

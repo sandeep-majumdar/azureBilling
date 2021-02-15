@@ -24,6 +24,30 @@ func (scl *summaryCategoryLookup) print(cnt int) {
 	}
 }
 
+func (scl *summaryCategoryLookup) printRecord(reportingCategory, reportingSubCategory, UnitOfMeasure string) {
+
+	observability.Logger("Info", fmt.Sprintf("|%s|%s|%s|", reportingCategory, reportingSubCategory, UnitOfMeasure))
+
+	for k, v := range scl.items {
+
+		if v.reportingCategory == "Data PaaS" {
+			observability.Logger("Info", fmt.Sprintf("M0|%s|%s|%s|", v.reportingCategory, v.reportingSubCategory, v.UnitOfMeasure))
+		}
+
+		if v.reportingCategory == reportingCategory {
+			observability.Logger("Info", fmt.Sprintf("M1 %s -> %v", k, v))
+		}
+
+		if v.reportingCategory == reportingCategory && v.reportingSubCategory == reportingSubCategory {
+			observability.Logger("Info", fmt.Sprintf("M2 %s -> %v", k, v))
+		}
+
+		if v.reportingCategory == reportingCategory && v.reportingSubCategory == reportingSubCategory && v.UnitOfMeasure == UnitOfMeasure {
+			observability.Logger("Info", fmt.Sprintf("M3 %s -> %v", k, v))
+		}
+	}
+}
+
 func (scl *summaryCategoryLookup) printKey(str string) {
 
 	i := 0
@@ -94,7 +118,7 @@ func (scl *summaryCategoryLookup) Read(fileLocation string) error {
 
 	observability.LogMemory("Info")
 	scl.printCount()
-	// scl.print(100)
+	// scl.print(300)
 
 	return err
 
@@ -124,6 +148,8 @@ func (scl *summaryCategoryLookup) getDivisor(quantityDivisor, effectiveDate stri
 			d = float64(days)
 		case "ManagedDisksOnly":
 			d = 1.0
+		case "DayTo24Hours": // = 1/24
+			d = 0.04
 		default: // n/a,
 			d = 1.0
 			observability.Logger("Error", fmt.Sprintf("Unexpected default, quantityDivisor=%s", quantityDivisor))
@@ -138,7 +164,10 @@ func (scl *summaryCategoryLookup) getKey(reportingCategory, reportingSubCategory
 	return strings.ToLower(fmt.Sprintf(":%s:%s:%s:", reportingCategory, reportingSubCategory, UnitOfMeasure))
 }
 
-func (scl *summaryCategoryLookup) get(reportingCategory, reportingSubCategory, UnitOfMeasure string) (summaryCategoryLookupItem, bool) {
+func (scl *summaryCategoryLookup) get(reportingCategory, reportingSubCategory, UnitOfMeasure, MeterCategory, MeterSubCategory string) (summaryCategoryLookupItem, bool) {
+
+	// scl.printCount()
+	// scl.printRecord(reportingCategory, reportingSubCategory, UnitOfMeasure)
 
 	key1 := scl.getKey(reportingCategory, reportingSubCategory, UnitOfMeasure)
 	scli, ok := scl.items[key1]
@@ -152,6 +181,7 @@ func (scl *summaryCategoryLookup) get(reportingCategory, reportingSubCategory, U
 
 		if !ok2 {
 			observability.Logger("Error", fmt.Sprintf("Unable to find summaryCategoryLookupItem for key1=%s, key2=%s", key1, key2))
+			// fmt.Println(fmt.Sprintf("%s,%s,%s,%s,%s", MeterCategory, MeterSubCategory, reportingCategory, reportingSubCategory, UnitOfMeasure))
 		}
 	}
 

@@ -1,0 +1,91 @@
+ReportingCategory,ReportingSubCategory,UnitOfMeasure,Summary,QuantityDivisor
+Automation,n/a,1/Month,ResourceUnits,1
+Automation,n/a,Other,Other,1
+Backup,n/a,1/Month,ResourceUnits,1
+Backup,n/a,Other,Other,1
+Backup,n/a,1 GB/Month,Storage (GB),1
+Compute IaaS,Bastion,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Compute IaaS,Bastion,Other,Other,1
+Compute IaaS,Disaster Recovery,1/Month,ResourceUnits,1
+Compute IaaS,Disaster Recovery,Other,Other,1
+Compute IaaS,Licences,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Compute IaaS,Licences,Other,Other,1
+Compute IaaS,Network,1/Month,ResourceUnits,1
+Compute IaaS,Network,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Compute IaaS,Network,1 GB,Data Transfer (GB),1
+Compute IaaS,Network,Other,Other,1
+Compute IaaS,Virtual Machines,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Compute IaaS,Virtual Machines,n/a,CPU,n/a
+Compute IaaS,Virtual Machines,n/a,MemGB,n/a
+Compute IaaS,Virtual Machines,Other,Other,1
+Compute Paas,Containerised Serverless,1 Hour,CPU,NumDaysInMonthTimes24Hrs
+Compute Paas,Containerised Serverless,1 GB Hour,Duration (Hrs),1
+Compute Paas,Containerised Serverless,Other,Other,1
+Compute PaaS,Network,1/Month,ResourceUnits,1
+Compute PaaS,Network,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Compute PaaS,Network,1 GB,Data Transfer (GB),1
+Compute PaaS,Network,Other,Other,1
+Compute Paas,Non-containerised Serverless,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Compute Paas,Non-containerised Serverless,Other,Other,1
+Compute PaaS,Scheduler,1/Month,ResourceUnits,1
+Compute PaaS,Scheduler,Other,Other,1
+Compute PaaS,Serverless Functions,1 GB Second,Duration (Hrs),3600
+Compute PaaS,Serverless Functions,1 GiB Hour,Duration (Hrs),1
+Compute PaaS,Serverless Functions,1 Hour,Duration (Hrs),1
+Compute PaaS,Serverless Functions,1,Execs/Ops (Mil),1000000
+Compute PaaS,Serverless Functions,10,Execs/Ops (Mil),100000
+Compute PaaS,Serverless Functions,Other,Other,1
+Compute PaaS,Serverless Functions,1 GB/Month,Storage (GB),1
+Compute PaaS,n/a,Other,Other,1
+Data PaaS,Compute,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Data PaaS,Compute,1K,Execs/Ops (Mil),1000
+Data PaaS,Compute,50K,Execs/Ops (Mil),20
+Data PaaS,Compute,1 Hour,Duration (Hrs),1
+Data PaaS,Compute,Other,Other,1
+Data PaaS,Database,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Data PaaS,Database,1/Day,ResourceUnits,NumDaysInMonth
+Data PaaS,Database,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Data PaaS,Database,10K,Execs/Ops (Mil),100
+Data PaaS,Database,1M,Execs/Ops (Mil),1
+Data PaaS,Database,Other,Other,1
+Data PaaS,Database,1 Day,PrePay (Days),1
+Data PaaS,Database,1 GB/Month,Storage (GB),1
+Data PaaS,Events,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Data PaaS,Events,1/Day,ResourceUnits,NumDaysInMonth
+Data PaaS,Events,100K,Execs/Ops (Mil),10
+Data PaaS,Events,1M,Execs/Ops (Mil),1
+Data PaaS,Events,Other,Other,1
+Development,n/a,1,ResourceUnits,1
+Development,n/a,Other,Other,1
+Identity,n/a,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Identity,n/a,1/Month,Execs/Ops (Mil),1
+Identity,n/a,Other,Other,1
+Network,n/a,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Network,n/a,1/Month,ResourceUnits,1
+Network,n/a,1 GB,Data Transfer or Processing (GB),1
+Network,n/a,Other,Other,1
+Observability,n/a,1/Day,ResourceUnits,NumDaysInMonth
+Observability,n/a,1/Month,ResourceUnits,1
+Observability,n/a,1 GB,Data Transfer or Processing (GB),1
+Observability,n/a,Other,Other,1
+Observability,n/a,1 GB/Month,Storage (GB),1
+Security,n/a,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Security,n/a,1/Day,ResourceUnits,NumDaysInMonth
+Security,n/a,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Security,n/a,1/Month,ResourceUnits,1
+Security,n/a,1GB,Data Transfer or Processing (GB),1
+Security,n/a,10K,Execs/Ops (Mil),100
+Security,n/a,Other,Other,1
+Storage,n/a,1/Day,ResourceUnits,NumDaysInMonth
+Storage,n/a,1 GB,Data Transfer or Processing (GB),1
+Storage,n/a,1M,Execs/Ops (Mil),1
+Storage,n/a,10K,Execs/Ops (Mil),100
+Storage,n/a,Other,Other,1
+Storage,n/a,1/Month,Storage (GB),ManagedDisksOnly
+Storage,n/a,1 GiB/Hour,Storage (GB),NumDaysInMonthTimes24Hrs
+Storage,n/a,1 GB/Month,Storage (GB),1
+Unassigned,n/a,Other,Other,1
+Specialist PaaS,n/a,1 Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Specialist PaaS,n/a,1/Hour,ResourceUnits,NumDaysInMonthTimes24Hrs
+Specialist PaaS,n/a,1/Month,ResourceUnits,1
+Specialist PaaS,n/a,Other,Other,1
