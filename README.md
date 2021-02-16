@@ -202,3 +202,20 @@ For the docs, see https://docs.microsoft.com/en-us/rest/api/cost-management/reta
 "0001e46a-9285-5fa8-b48a-240e307a24f7","A3 Spot","Virtual Machines A Series Windows","A3 Spot","Standard_A3","Compute","Virtual Machines","UK North","1 Hour","Consumption","","16-10-2019",0.000000,0.190000,0.190000
 ...
 ```
+
+## Other Notes
+
+Some issues were experienced where xls created categories were not matching, which turned out to be the difference between space types
+This may bite you during usage, so providing info below
+
+$ echo "  " | od -An -vtu1
+194 160 <-- non breaking space (\& nbsp;)
+32 <-- actual space!
+
+One way to match in vs code:
+
+Ctrl + F => ([\u00A0\u00C2]) (remember to click the .* button to enable Regex)
+ 
+
+
+ 

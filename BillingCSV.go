@@ -101,15 +101,23 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				// adjust quantity for managed disks
 				// note its not perfect, because selecting performance option for a
 				// small disk will allocate a larger disk without the volume
-				if l.MeterCategory[len(l.MeterCategory)-5:] == " Disks" {
-					mdli, ok4 := ManagedDiskLookup.get(l.MeterName)
-					if ok4 {
-						summaryQuantity = float64(mdli.SizeGB) * l.Quantity / divisor
+				if l.MeterCategory == "Storage" && len(l.MeterSubCategory) > 6 {
+					if l.MeterSubCategory[len(l.MeterSubCategory)-6:] == " Disks" && l.MeterName[len(l.MeterName)-6:] == " Disks" {
+
+						//observability.Logger("Info", fmt.Sprintf("Found managed disk %s %s", l.MeterCategory, l.MeterName))
+						mdli, ok4 := ManagedDiskLookup.get(l.MeterName)
+
+						if ok4 {
+							summaryCategory = "Storage (TB)"
+							summaryQuantity = float64(mdli.SizeGB) * l.Quantity / 1024
+							// observability.Logger("Info", fmt.Sprintf("Found managed disk %s origQ=%f sumQ=%f", l.MeterName, l.Quantity, summaryQuantity))
+						}
 					}
 				}
 
 				// For databases, we will ignore DTUs etc and just count the line items
-				if cat == "Data PaaS" && subcat == "Database" && summaryCategory == "ResourceUnits" {
+				// if cat == "Data PaaS" && subcat == "Database" && summaryCategory == "ResourceUnits" {
+				if cat == "Data PaaS" && summaryCategory == "Count" {
 					summaryQuantity = 1.0 / divisor
 				}
 
@@ -122,7 +130,8 @@ func (bcsv *BillingCSV) ProcessFile() error {
 					Compute IaaS,Virtual Machines,n/a,Memory (GB),n/a
 				*/
 
-				if cat == "Compute IaaS" && subcat == "Virtual Machines" && summaryCategory == "ResourceUnits" {
+				// if cat == "Compute IaaS" && subcat == "Virtual Machines" && summaryCategory == "ResourceUnits" {
+				if cat == "IaaS" && subcat == "Compute" && uom == "1 Hour" {
 
 					if ok3 {
 						// observability.Logger("Info", fmt.Sprintf("sku=%s armsku=%s", pmi.SkuName, pmi.ArmSkuName))

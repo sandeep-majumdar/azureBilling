@@ -142,6 +142,8 @@ func (scl *summaryCategoryLookup) getDivisor(quantityDivisor, effectiveDate stri
 		}
 
 		switch quantityDivisor {
+		case "NumDaysInMonthTimes24HrsDiv1024":
+			d = float64(days) * 24 * 1024
 		case "NumDaysInMonthTimes24Hrs":
 			d = float64(days) * 24
 		case "NumDaysInMonth":
