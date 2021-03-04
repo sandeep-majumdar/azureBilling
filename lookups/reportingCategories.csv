@@ -1,4 +1,5 @@
 ﻿Meter,SubMeter,Reporting Category,Reporting SubCategory
+Azure Kubernetes Service,*,Container PaaS,Containers
 Azure Active Directory for External Identities,*,Identity PaaS,Identity
 Azure Cognitive Search,*,Specialist PaaS,AI
 Cognitive Services,*,Specialist PaaS,AI
@@ -98,6 +99,7 @@ Storage,File Sync,Data PaaS,Storage
 Storage,Change Feed,Data PaaS,Storage
 StorSimple,*,Data PaaS,Storage
 Azure DevOps,*,Developer PaaS,Tooling
+Azure Stack Edge,*,Specialist PaaS,Azure Stack
 Visual Studio Codespaces,*,Developer PaaS,Tooling
 Visual Studio Subscription,*,Developer PaaS,Tooling
 Azure App Service,Standard Plan - Linux,Serverless PaaS,Web

@@ -130,11 +130,12 @@ func (bcsv *BillingCSV) ProcessFile() error {
 					Compute IaaS,Virtual Machines,n/a,Memory (GB),n/a
 				*/
 
-				// if cat == "Compute IaaS" && subcat == "Virtual Machines" && summaryCategory == "ResourceUnits" {
-				if cat == "IaaS" && subcat == "Compute" && uom == "1 Hour" {
+				// Need to avoid blank ArmSkuNames within the IaaS/Compute/1hour, e.g
+				// BillingCSV.go:152       sku=1 vCPU armsku=
+				// BillingCSV.go:153       meter name=1 vCPU License cat=Cloud Services subcat=Server
+				if cat == "IaaS" && subcat == "Compute" && uom == "1 Hour" && pmi.ArmSkuName != "" {
 
 					if ok3 {
-						// observability.Logger("Info", fmt.Sprintf("sku=%s armsku=%s", pmi.SkuName, pmi.ArmSkuName))
 						// sku=DS12-2 v2 armsku=Standard_DS12-2_v2
 						vmli, ok5 := VmSizeLookup.get(pmi.ArmSkuName)
 
@@ -150,6 +151,9 @@ func (bcsv *BillingCSV) ProcessFile() error {
 
 						} else {
 							// logging happens in VmSizeLookup
+							observability.Logger("Info", fmt.Sprintf("sku=%s armsku=%s", pmi.SkuName, pmi.ArmSkuName))
+							observability.Logger("Info", fmt.Sprintf("reporting cat=%s subcat=%s", cat, subcat))
+							observability.Logger("Info", fmt.Sprintf("meter name=%s cat=%s subcat=%s", l.MeterName, l.MeterCategory, l.MeterSubCategory))
 						}
 
 					} else {

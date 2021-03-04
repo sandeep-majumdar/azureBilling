@@ -112,5 +112,6 @@ Specialist PaaS,AI,1M,Execs/Ops (Mil),1
 Specialist PaaS,Bot,1K,Execs/Ops (Mil),1000
 Specialist PaaS,IOT,1/Month,Count,1
 Specialist PaaS,IOT,1K,Execs/Ops (Mil),1000
+Specialist PaaS,Azure Stack,1/Day,Count,NumDaysInMonth
 Specialist PaaS,Maps,1K,Execs/Ops (Mil),1000
 Unassigned,n/a,Other,Unassigned,1
