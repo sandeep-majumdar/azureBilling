@@ -40,7 +40,7 @@ Azure Data Factory,*,Data PaaS,Integration
 Azure Data Factory v2,*,Data PaaS,Integration
 IoT Hub,*,Specialist PaaS,IOT
 Virtual Machines Licenses,*,IaaS,Licence
-API Management,*,Serverless PaaS,Management
+API Management,*,Serverless PaaS,API Management
 App Configuration,*,Operational PaaS,ManagementPerimeter
 Azure Maps,*,Specialist PaaS,Maps
 Application Insights,*,Operational PaaS,Monitoring
@@ -73,9 +73,11 @@ Advanced Threat Protection,Key Vault,Security PaaS,Security
 Advanced Threat Protection,Azure Kubernetes Services,Container PaaS,Security
 Advanced Threat Protection,Azure Container Registry,Container PaaS,Security
 Azure Database for MySQL,*,Data PaaS,SQL
+Azure Database for MariaDB,*,Data PaaS,NoSQL
 Azure Database for PostgreSQL,*,Data PaaS,SQL
 SQL Database,*,Data PaaS,SQL
 SQL Managed Instance,*,Data PaaS,SQL
+Storage,Ultra Disks,IaaS,Storage
 Storage,Premium SSD Managed Disks,IaaS,Storage
 Storage,Standard HDD Managed Disks,IaaS,Storage
 Storage,Tiered Block Blob,Data PaaS,Storage
@@ -100,8 +102,11 @@ Storage,Change Feed,Data PaaS,Storage
 StorSimple,*,Data PaaS,Storage
 Azure DevOps,*,Developer PaaS,Tooling
 Azure Stack Edge,*,Specialist PaaS,Azure Stack
+Media Services,*,Specialist PaaS,Media Services
 Visual Studio Codespaces,*,Developer PaaS,Tooling
 Visual Studio Subscription,*,Developer PaaS,Tooling
+Azure Spring Cloud,*,Serverless PaaS,Web
+Azure App Service,*,Serverless PaaS,Web
 Azure App Service,Standard Plan - Linux,Serverless PaaS,Web
 Azure App Service,Premium v2 Plan - Linux,Serverless PaaS,Web
 Azure App Service,Free Plan,Serverless PaaS,Web

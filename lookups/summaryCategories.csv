@@ -14,6 +14,7 @@ Data PaaS,Analytics,1 GB,Data Transfer or Processing (TB),1024
 Data PaaS,Analytics,1 GB/Month,Storage (TB),1024
 Data PaaS,Analytics,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 Data PaaS,Analytics,1 TB/Month,Storage (TB),1
+Data PaaS,Analytics,1 TB,Storage (TB),1
 Data PaaS,Analytics,1/Hour,Count,NumDaysInMonthTimes24Hrs
 Data PaaS,Analytics,1/Month,Count,1
 Data PaaS,Analytics,1K,Execs/Ops (Mil),1000
@@ -27,6 +28,7 @@ Data PaaS,Integration,1K,Execs/Ops (Mil),1000
 Data PaaS,Integration,50K,Execs/Ops (Mil),20
 Data PaaS,NoSQL,1 GB/Month,Storage (TB),1024
 Data PaaS,NoSQL,1/Hour,Count,NumDaysInMonthTimes24Hrs
+Data PaaS,NoSQL,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 Data PaaS,NoSQL,10K,Execs/Ops (Mil),100
 Data PaaS,NoSQL,1M,Execs/Ops (Mil),1
 Data PaaS,Processing,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
@@ -54,6 +56,8 @@ IaaS,Recovery,1/Month,Count,1
 IaaS,Storage,1 GB/Month,Storage (TB),1024
 IaaS,Storage,1/Month,Count,1
 IaaS,Storage,10K,Execs/Ops (Mil),100
+IaaS,Storage,1 GiB/Hour,Storage (TB),NumDaysInMonthTimes24HrsDiv1024
+IaaS,Storage,1/Hour,Count,NumDaysInMonthTimes24Hrs
 Identity PaaS,Identity,1/Hour,Count,NumDaysInMonthTimes24Hrs
 Identity PaaS,Identity,1/Month,Count,1
 Operational PaaS,Automation,1 Minute,Count (from Hours),60
@@ -101,9 +105,12 @@ Serverless PaaS,Functions,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 Serverless PaaS,Functions,1/Month,Count,1
 Serverless PaaS,Functions,100 GB Seconds,Duration (GB Hours),36
 Serverless PaaS,Functions,100 Seconds,Count (from Hours),36
-Serverless PaaS,Management,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
+Serverless PaaS,API Management,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
+Serverless PaaS,API Management,10K,Execs/Ops (Mil),100
 Serverless PaaS,Web,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 Serverless PaaS,Web,1/Day,Count,NumDaysInMonth
+Serverless PaaS,Web,1/Year,Count,1
+Serverless PaaS,Web,1M,Execs/Ops (Mil),1
 Specialist PaaS,AI,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 Specialist PaaS,AI,1/Day,Count,NumDaysInMonth
 Specialist PaaS,AI,1/Month,Count,1
@@ -113,5 +120,8 @@ Specialist PaaS,Bot,1K,Execs/Ops (Mil),1000
 Specialist PaaS,IOT,1/Month,Count,1
 Specialist PaaS,IOT,1K,Execs/Ops (Mil),1000
 Specialist PaaS,Azure Stack,1/Day,Count,NumDaysInMonth
+Specialist PaaS,Azure Stack,1,Count,1
 Specialist PaaS,Maps,1K,Execs/Ops (Mil),1000
+Specialist PaaS,Media Services,1/Month,Count,1
+Specialist PaaS,Media Services,1,Count,1
 Unassigned,n/a,Other,Unassigned,1
