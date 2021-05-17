@@ -60,6 +60,7 @@ IaaS,Storage,1 GiB/Hour,Storage (TB),NumDaysInMonthTimes24HrsDiv1024
 IaaS,Storage,1/Hour,Count,NumDaysInMonthTimes24Hrs
 Identity PaaS,Identity,1/Hour,Count,NumDaysInMonthTimes24Hrs
 Identity PaaS,Identity,1/Month,Count,1
+Storage,Blob Features,1/month,Count,NumDaysInMonth
 Operational PaaS,Automation,1 Minute,Count (from Hours),60
 Operational PaaS,Automation,1/Month,Count,1
 Operational PaaS,CDN,1 GB,Data Transfer or Processing (TB),1024
@@ -106,6 +107,7 @@ Serverless PaaS,Functions,1/Month,Count,1
 Serverless PaaS,Functions,100 GB Seconds,Duration (GB Hours),36
 Serverless PaaS,Functions,100 Seconds,Count (from Hours),36
 Serverless PaaS,API Management,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
+Serverless PaaS,API Management,10 Hours,Count (from Hours),NumDaysInMonthTimes24HrsDiv10
 Serverless PaaS,API Management,10K,Execs/Ops (Mil),100
 Serverless PaaS,Web,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 Serverless PaaS,Web,1/Day,Count,NumDaysInMonth

@@ -99,6 +99,7 @@ Storage,Premium Block Blob,Data PaaS,Storage
 Storage,Azure Data Lake Storage Gen2 Flat Namespace,Data PaaS,Storage
 Storage,File Sync,Data PaaS,Storage
 Storage,Change Feed,Data PaaS,Storage
+Storage,Blob Features,Data PaaS,Storage
 StorSimple,*,Data PaaS,Storage
 Azure DevOps,*,Developer PaaS,Tooling
 Azure Stack Edge,*,Specialist PaaS,Azure Stack
