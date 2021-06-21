@@ -38,6 +38,7 @@ Data PaaS,SQL,1 GB/Month,Storage (TB),1024
 Data PaaS,SQL,1 GiB/Month,Storage (TB),1024
 Data PaaS,SQL,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 Data PaaS,SQL,1/Day,Count,NumDaysInMonth
+Data PaaS,SQL,1 IOPS/Month,Count,1
 Data PaaS,Storage,1 /Day,Count,NumDaysInMonth
 Data PaaS,Storage,1 GB,Data Transfer or Processing (TB),1024
 Data PaaS,Storage,1 GB/Month,Storage (TB),1024
