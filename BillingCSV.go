@@ -101,8 +101,9 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				// adjust quantity for managed disks
 				// note its not perfect, because selecting performance option for a
 				// small disk will allocate a larger disk without the volume
-				if l.MeterCategory == "Storage" && len(l.MeterSubCategory) > 6 {
-					if l.MeterSubCategory[len(l.MeterSubCategory)-6:] == " Disks" && l.MeterName[len(l.MeterName)-6:] == " Disks" {
+				if l.MeterCategory == "Storage" && len(l.MeterName) > 6 {
+					// if l.MeterSubCategory[len(l.MeterSubCategory)-6:] == " Disks" && l.MeterName[len(l.MeterName)-6:] == " Disks" {
+					if l.MeterName[len(l.MeterName)-6:] == " Disks" {
 
 						//observability.Logger("Info", fmt.Sprintf("Found managed disk %s %s", l.MeterCategory, l.MeterName))
 						mdli, ok4 := ManagedDiskLookup.get(l.MeterName)
