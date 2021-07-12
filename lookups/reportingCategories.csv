@@ -103,6 +103,7 @@ Storage,Blob Features,Data PaaS,Storage
 StorSimple,*,Data PaaS,Storage
 Azure DevOps,*,Developer PaaS,Tooling
 Azure Stack Edge,*,Specialist PaaS,Azure Stack
+Azure Arc,*,Specialist PaaS,Azure Arc
 Media Services,*,Specialist PaaS,Media Services
 Visual Studio Codespaces,*,Developer PaaS,Tooling
 Visual Studio Subscription,*,Developer PaaS,Tooling
@@ -121,5 +122,7 @@ Azure App Service,Shared Plan,Serverless PaaS,Web
 Azure App Service,Premium Plan,Serverless PaaS,Web
 Azure App Service,Premium Plan - Linux,Serverless PaaS,Web
 Azure App Service,Premium Windows Container Plan,Container PaaS,Web
+Azure managed instance for apache cassandra,*,Data PaaS,NoSQL
 SignalR,*,Serverless PaaS,Web
 Unassigned,*,Unassigned,n/a
+Github,*,Developer PaaS,Github

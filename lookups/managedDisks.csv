@@ -24,6 +24,8 @@ P40 Disks,2048
 P50 Disks,4096
 P6 Disks,64
 P60 Disks,8192
+P70 Disks,16384
+P80 Disks,32767
 S10 Disks,128
 S15 Disks,256
 S20 Disks,512

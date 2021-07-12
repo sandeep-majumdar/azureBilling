@@ -141,6 +141,8 @@ func (scl *summaryCategoryLookup) getDivisor(quantityDivisor, effectiveDate stri
 			observability.Logger("Error", fmt.Sprintf("Failed to parse days, err := strconv.Atoi(ConfigMap.NumDaysInMonth) from %s", ConfigMap.NumDaysInMonth))
 		}
 
+		// NumDaysInMonthTimes24HrsDiv10hrs
+
 		switch quantityDivisor {
 		case "NumDaysInMonthTimes24HrsDiv1024":
 			d = float64(days) * 24 * 1024
@@ -148,6 +150,12 @@ func (scl *summaryCategoryLookup) getDivisor(quantityDivisor, effectiveDate stri
 			d = float64(days) * 24
 		case "NumDaysInMonthTimes24HrsDiv10":
 			d = float64(days) * 24.0 / 10.0
+		case "NumDaysInMonthTimes24HoursDiv100":
+			d = float64(days) * 24.0 / 100.0
+		case "NumDaysInMonthTimes24HrsDiv10kmins":
+			d = float64(days) * 24.0 * 60.0 / 10000.0
+		case "NumDaysInMonthTimes24HrsDiv1000mins":
+			d = float64(days) * 24.0 * 60.0 / 1000.0
 		case "NumDaysInMonth":
 			d = float64(days)
 		case "ManagedDisksOnly":
