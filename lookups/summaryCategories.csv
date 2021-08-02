@@ -46,8 +46,11 @@ Data PaaS,Storage,1 /Day,Count,NumDaysInMonth
 Data PaaS,Storage,1 GB,Data Transfer or Processing (TB),1024
 Data PaaS,Storage,1 GB/Month,Storage (TB),1024
 Data PaaS,Storage,1/Month,Count,1
+Data PaaS,Storage,10k/Month,Count,1
 Data PaaS,Storage,10K,Execs/Ops (Mil),100
 Data PaaS,Storage,1M,Execs/Ops (Mil),1
+Data PaaS,Storage,1000000,Execs/Ops (Mil),1
+Data PaaS,Storage,10000000,Execs/Ops (Mil),Times10
 Developer PaaS,Tooling,1,Count,1
 Developer PaaS,Tooling,1 GB/Month,Storage (TB),1024
 Developer PaaS,Tooling,1/Hour,Count,NumDaysInMonthTimes24Hrs
@@ -100,6 +103,10 @@ Security PaaS,PKI,1,Count,1
 Security PaaS,SecretManagement,1,Count,1
 Security PaaS,SecretManagement,10K,Execs/Ops (Mil),100
 Security PaaS,Security,10K,Execs/Ops (Mil),100
+Security PaaS,ATP,100000000,Execs/Ops (Mil),1000000
+Security PaaS,ATP,1000000,Execs/Ops (Mil),1000000
+Security PaaS,ATP,1/month,Count,1
+Security Paas,Perimeter,100 hours,Count (from Hours),NumDaysInMonthTimes24HoursDiv100
 Serverless PaaS,Events,1,Count,1
 Serverless PaaS,Events,1 GB,Data Transfer or Processing (TB),1024
 Serverless PaaS,Events,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs

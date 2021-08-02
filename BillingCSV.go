@@ -65,6 +65,10 @@ func (bcsv *BillingCSV) ProcessFile() error {
 				}
 
 				plmi, ok2 := PlatformMapLookup.get(l.SubscriptionId, l.ResourceGroup)
+				//if l.SubscriptionId == "ad88d8c8-5739-4619-b8dd-4cab5fd3c075" && l.ResourceGroup == "DATABRICKS-RG-ADBAZEWTDATALAKEPLATFORM-6PRSSGZRQWVLC" {
+				//	observability.Logger("Debug", fmt.Sprintf("Debugging pmli=%v ok2=%t", plmi, ok2))
+				//}
+
 				if ok2 {
 					portfolio = plmi.portfolio
 					plat = plmi.platform

@@ -67,6 +67,9 @@ func (pml *platformMapLookup) Read(fileLocation string) error {
 
 				key = pml.getKey(i.subscriptionId, i.rgName)
 				pml.items[key] = i
+				key = pml.getKey(i.subscriptionId, "")
+				pml.items[key] = i
+
 			}
 		}
 	}
@@ -87,21 +90,47 @@ func (pml *platformMapLookup) get(subscriptionId, rgName string) (platformMapLoo
 
 	key := pml.getKey(subscriptionId, rgName)
 
+	//if subscriptionId == "ad88d8c8-5739-4619-b8dd-4cab5fd3c075" && rgName == "DATABRICKS-RG-ADBAZEWTDATALAKEPLATFORM-6PRSSGZRQWVLC" {
+	//	observability.Logger("Error", fmt.Sprintf("Debugging key=%s", key))
+	//}
+
 	pmli, ok := pml.items[key]
 	if !ok {
 
 		// some rgNames like databricks are dynamic, so just try to match the subscriptionid
 		l := len(subscriptionId)
 
+		//if subscriptionId == "ad88d8c8-5739-4619-b8dd-4cab5fd3c075" && rgName == "DATABRICKS-RG-ADBAZEWTDATALAKEPLATFORM-6PRSSGZRQWVLC" {
+		//	observability.Logger("Debug", fmt.Sprintf("Debugging key=%s failed once, subscriptionLen=%d", key, l))
+		//}
+
 		ok2 := false
 		for k, v := range pml.items {
-			if k[:l] == subscriptionId {
+
+			if k[1:l+1] == subscriptionId {
 				pmli, ok2 = v, true
+
+				//if subscriptionId == "ad88d8c8-5739-4619-b8dd-4cab5fd3c075" && rgName == "DATABRICKS-RG-ADBAZEWTDATALAKEPLATFORM-6PRSSGZRQWVLC" {
+				//	observability.Logger("Debug", fmt.Sprintf("Debugging pmli=%s", v))
+				//}
+
+				break
+			} else {
+				//if subscriptionId == "ad88d8c8-5739-4619-b8dd-4cab5fd3c075" && rgName == "DATABRICKS-RG-ADBAZEWTDATALAKEPLATFORM-6PRSSGZRQWVLC" {
+				//	if strings.Contains(k, "ad88d8c8-5739-4619-b8dd-4cab5fd3c075") {
+				//		observability.Logger("Debug", fmt.Sprintf("Debugging key=%s failed once, k=%s, k[1:l+1]=%s", key, k, k[1:l+1]))
+				//	}
+				//}
 			}
 		}
 
+		ok = ok2
+
 		if !ok2 {
-			// observability.Logger("Error", fmt.Sprintf("Unable to find platformMapLookupItem for key=%s", key))
+			if subscriptionId == "ad88d8c8-5739-4619-b8dd-4cab5fd3c075" && rgName == "DATABRICKS-RG-ADBAZEWTDATALAKEPLATFORM-6PRSSGZRQWVLC" {
+				observability.Logger("Debug", fmt.Sprintf("Debugging key=%s failed totally", key))
+			}
+			//observability.Logger("Error", fmt.Sprintf("Unable to find platformMapLookupItem for key=%s", key))
 		}
 
 	}

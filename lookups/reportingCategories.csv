@@ -35,6 +35,8 @@ Logic Apps,*,Serverless PaaS,Functions
 Azure Active Directory B2C,*,Identity PaaS,Identity
 Azure Active Directory Domain Services,*,Identity PaaS,Identity
 Security Center,*,Security PaaS,InsightsAlerts
+Advanced Threat Protection,*,Security PaaS,ATP
+Perimeter,*,Security PaaS,Perimeter
 Sentinel,*,Security PaaS,InsightsAlerts
 Azure Data Factory,*,Data PaaS,Integration
 Azure Data Factory v2,*,Data PaaS,Integration

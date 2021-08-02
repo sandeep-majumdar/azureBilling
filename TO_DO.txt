@@ -1,0 +1,17 @@
+
+
+
+1) Extract AKS and DATABRICKS from billingLine.resourceid 
+e.g. 
+
+/subscriptions/ad88d8c8-5739-4619-b8dd-4cab5fd3c075/resourceGroups/DATABRICKS-RG-ADBAZEWDPLTMIGRATION-36ZTYRO4LNNT2/
+providers/Microsoft.Compute/virtualMachines/8eb46fa205404b7e9f771ca64cb92321
+
+/subscriptions/a4fe28da-0262-4b49-a9ea-7f2bba03f85b/resourceGroups/MC_RGPAZEWDMLITDP-AKSK8S001_CORE-DEV-SOUTHEASTASIA-1_SOUTHEASTASIA/
+providers/Microsoft.Compute/virtualMachineScaleSets/aks-default-39290818-vmss
+
+/subscriptions/f8988584-f64f-4909-985b-f5615fa387ce/resourceGroups/MC_TIE-SHARED_TIEAKS_WESTEUROPE/
+providers/Microsoft.Compute/virtualMachines/aks-agentpool-25487875-2
+
+
+2) Rounding errors on count (from hours) leading to overstated consumption. Costs are not affected.

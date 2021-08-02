@@ -158,6 +158,8 @@ func (scl *summaryCategoryLookup) getDivisor(quantityDivisor, effectiveDate stri
 			d = float64(days) * 24.0 * 60.0 / 1000.0
 		case "NumDaysInMonth":
 			d = float64(days)
+		case "Times10":
+			d = 0.1
 		case "ManagedDisksOnly":
 			d = 1.0
 		case "DayTo24Hours": // = 1/24
