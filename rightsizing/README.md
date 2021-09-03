@@ -49,6 +49,7 @@ head -100 vmMonitorMetricsParsed.json > vmMonitorMetrics.json
 
 Rightsizing processing of 100 VMs takes approximately 1m20s with MAX_THREADS=20 on a core i7
 
+```txt
 I 2021-09-03 15:19:51.8872 [NoCausationId => NoCorrId]  platformMapLookup.go:77 MEMORY Alloc = 6 MiB    TotalAlloc = 9 MiB      Sys = 70 MiB    NumGC = 2
 I 2021-09-03 15:19:51.8873 [NoCausationId => NoCorrId]  platformMapLookup.go:27 PlatformMapLookup has 9820 records
 I 2021-09-03 15:19:51.8918 [1 => c96f96f6-6be4-47d7-b0e2-cd0ae7dda3ec]  vmRightsizing.go:46     Loading from output files
@@ -75,3 +76,4 @@ I 2021-09-03 15:20:41.9334 [1 => c96f96f6-6be4-47d7-b0e2-cd0ae7dda3ec]  vmRights
 I 2021-09-03 15:21:11.3446 [1 => c96f96f6-6be4-47d7-b0e2-cd0ae7dda3ec]  vmRightsizing.go:201    Processed 200 virtual machines
 I 2021-09-03 15:21:11.3447 [1 => c96f96f6-6be4-47d7-b0e2-cd0ae7dda3ec]  vmRightsizing.go:202    Have 200 vm metric records
 I 2021-09-03 16:55:42.2363 [1 => 837f2e0b-e33e-42d1-8ba5-4f82a2a97f81]  vmRightsizing.go:210    Writing vm day values file to /mnt/c/Users/adria/Downloads/vmMonitorMetrics.json
+```
