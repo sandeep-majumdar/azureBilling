@@ -12,6 +12,7 @@ E50 Disks,4096
 E6 Disks,64
 E60 Disks,8192
 E70 Disks,16384
+E80 Disks,32767
 P1 Disks,4
 P2 Disks,8
 P10 Disks,128

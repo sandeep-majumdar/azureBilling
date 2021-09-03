@@ -57,6 +57,7 @@ Developer PaaS,Tooling,1/Hour,Count,NumDaysInMonthTimes24Hrs
 Developer PaaS,Tooling,1/Month,Count,1
 Developer PaaS,github,10000 minutes,Count (from Hours),NumDaysInMonthTimes24HrsDiv10kmins
 Developer PaaS,github,1000 minutes,Count (from Hours),NumDaysInMonthTimes24HrsDiv1000mins
+Developer PaaS,github,1 GB/month,Storage (TB),1024
 IaaS,Compute,1 Hour,Count (from Hours),NumDaysInMonthTimes24Hrs
 IaaS,Compute,100 Hours,Count (from Hours),NumDaysInMonthTimes24HoursDiv100
 IaaS,Licence,1,Count,1
@@ -105,6 +106,7 @@ Security PaaS,SecretManagement,10K,Execs/Ops (Mil),100
 Security PaaS,Security,10K,Execs/Ops (Mil),100
 Security PaaS,ATP,100000000,Execs/Ops (Mil),1000000
 Security PaaS,ATP,1000000,Execs/Ops (Mil),1000000
+Security PaaS,ATP,1m,Execs/Ops (Mil),1
 Security PaaS,ATP,1/month,Count,1
 Security Paas,Perimeter,100 hours,Count (from Hours),NumDaysInMonthTimes24HoursDiv100
 Serverless PaaS,Events,1,Count,1

@@ -1,0 +1,5 @@
+
+export RESOURCENAME=/subscriptions/ecd48036-a17a-47c1-90f9-5a13975853a3/resourceGroups/rgpazewnmlit001prodpohdb/providers/Microsoft.Compute/virtualMachines/anmlp1podhdb01
+
+az monitor metrics list --resource {RESOURCENAME} --metric "Percentage CPU" "Available Memory Bytes" --start-time 2021-08-24T00:00:00Z --end-time 2021-08-26T00:00:00Z --interval PT24H --aggregation Average Count Maximum Minimum
+

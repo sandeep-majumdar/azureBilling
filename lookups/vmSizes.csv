@@ -331,3 +331,6 @@ standard_m128,128,2048
 standard_e16-4s_v3,4,128
 Standard_NC24s_v3,24,448
 standard_nc24rs_v2,24,448
+standard_m32-8ms,8,875
+standard_m8-2ms,2,218.75
+standard_nc12s_v3,12,224

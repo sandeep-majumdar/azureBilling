@@ -1,0 +1,5 @@
+
+
+az login --service-principal -u {CLIENTID} -p {CLIENTSECRET} --tenant {TENANTID} --allow-no-subscriptions
+
+az account set --subscription {SUBSCRIPTIONID}
