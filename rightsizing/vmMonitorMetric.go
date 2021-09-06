@@ -1,9 +1,15 @@
 package rightsizing
 
+import (
+	"fmt"
+
+	"github.com/adeturner/azureBilling/observability"
+)
+
 type vmMonitorMetric struct {
-	ResourceId  string          `json:"resourceId"`
-	ObserveMap  *ObservationMap `json:"observeMap"`
-	ErrorString string          `json:"errorStr"`
+	ResourceId   string          `json:"resourceId"`
+	Observations *ObservationMap `json:"observations"`
+	ErrorString  string          `json:"errorStr"`
 }
 
 func (vmmt *vmMonitorMetric) setErrorString(errStr string) {
@@ -14,6 +20,13 @@ func NewVmMonitorMetric(resourceid string, errStr string, om *ObservationMap) *v
 	m := &vmMonitorMetric{}
 	m.ResourceId = resourceid
 	m.ErrorString = errStr
-	m.ObserveMap = om
+	m.Observations = om
 	return m
+}
+
+func (vmmt *vmMonitorMetric) print() {
+	observability.Info(fmt.Sprintf("%v", vmmt))
+	if vmmt.Observations != nil {
+		vmmt.Observations.print()
+	}
 }

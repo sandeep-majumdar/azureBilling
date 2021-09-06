@@ -10,21 +10,20 @@ import (
 	"github.com/adeturner/azureBilling/utils"
 )
 
-type vmdConcatKey string
-
 type vmDetails struct {
-	vmMap map[vmdConcatKey]*vmDetail
+	vmMap map[vmResourceId]*vmDetail
 }
 
 func NewVmDetails() (vmd *vmDetails, err error) {
 	vmd = &vmDetails{}
-	vmd.vmMap = make(map[vmdConcatKey]*vmDetail)
+	vmd.vmMap = make(map[vmResourceId]*vmDetail)
 	return vmd, err
 }
 
-func (vmd *vmDetails) addValue(i vmDetail) (err error) {
-	k := vmd.getvmdConcatKey(i.ResourceId)
-	vmd.vmMap[k] = &i
+func (vmd *vmDetails) addValue(i *vmDetail) (err error) {
+
+	k := vmd.getvmResourceId(i.ResourceId)
+	vmd.vmMap[k] = i
 	return err
 }
 
@@ -41,17 +40,17 @@ func (vmd *vmDetails) Add(resourceId, portfolio, platform, productCode, environm
 	v.EnvironmentType = environmentType
 	v.ResourceLocation = resourceLocation
 	v.MeterName = meterName
-	k := vmd.getvmdConcatKey(resourceId)
+	k := vmd.getvmResourceId(resourceId)
 	vmd.vmMap[k] = v
 	return err
 }
 
-func (vmd *vmDetails) getvmdConcatKey(resourceId string) vmdConcatKey {
-	return vmdConcatKey(resourceId)
+func (vmd *vmDetails) getvmResourceId(resourceId string) vmResourceId {
+	return vmResourceId(resourceId)
 }
 
 func (vmd *vmDetails) Get(resourceId string) (v *vmDetail, ok bool) {
-	k := vmd.getvmdConcatKey(resourceId)
+	k := vmd.getvmResourceId(resourceId)
 	v, ok = vmd.vmMap[k]
 	return v, ok
 }
@@ -78,19 +77,22 @@ func (vmd *vmDetails) ReadFile(filename string) error {
 			cnt++
 			// skip the first row (header)
 			if cnt > 1 {
-				i := vmDetail{}
-				i.ResourceId = record[0]
-				i.Portfolio = record[1]
-				i.Platform = record[2]
-				i.ProductCode = record[3]
-				i.EnvironmentType = record[4]
-				i.ResourceLocation = record[5]
-				i.MeterName = record[6]
+				i := &vmDetail{}
+				if cnt == 2 {
+					//observability.Info(fmt.Sprintf("%s %s %s", record[1], record[2], record[3]))
+				}
+				i.ResourceId = record[1]
+				i.Portfolio = record[2]
+				i.Platform = record[3]
+				i.ProductCode = record[4]
+				i.EnvironmentType = record[5]
+				i.ResourceLocation = record[6]
+				i.MeterName = record[7]
 				vmd.addValue(i)
 			}
 		}
 	}
-	observability.Info(fmt.Sprintf("Loaded %d vmDayValues from file %s", len(vmd.vmMap), filename))
+	observability.Info(fmt.Sprintf("Loaded %d vmDetails from file %s", len(vmd.vmMap), filename))
 	observability.LogMemory("Info")
 	return err
 }
@@ -149,7 +151,7 @@ func (vmd *vmDetails) WriteCSVOutput(w io.Writer) (err error) {
 }
 
 /*
-func (vmd *vmDetails)  queryvmdConcatKey(val vmdConcatKey) (subscriptionid, resourcename, datestr string, err error) {
+func (vmd *vmDetails)  queryvmResourceId(val vmResourceId) (subscriptionid, resourcename, datestr string, err error) {
 	s := strings.Split(string(val), "/")
 	subscriptionid = s[0]
 	resourcename = s[1]

@@ -10,6 +10,11 @@ const (
 func (m MeasureType) String() string {
 	return [...]string{
 		"Percentage CPU",
-		"Available Memory",
+		"Available Memory Bytes",
 	}[m]
+}
+
+var MeasureTypeList = []MeasureType{
+	MEASURETYPE_PRECENTAGE_CPU,
+	MEASURETYPE_AVAILABLE_MEMORY,
 }

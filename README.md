@@ -12,6 +12,8 @@ Please see the relevant readme file
 
 - Rightsizing for Azure using the billfile: an experimental capability still under development, see [Rightsizing Readme](rightsizing/README.md)
 
+NOTE: Rightsizing requires AZURE_AUTH_LOCATION to be configured to an appropriate SPN file with clientid and secret.
+
 ## RELEASE NOTES
 
 The repo has been refactored and fitted with a cli to separate the functionality. The following cli commands are possible:

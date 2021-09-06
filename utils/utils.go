@@ -61,3 +61,12 @@ func MinI(a, b int) int {
 	}
 	return b
 }
+
+func HourString(i int) (hourString string) {
+	if i < 10 {
+		hourString = fmt.Sprintf("0%d", i)
+	} else {
+		hourString = fmt.Sprintf("%d", i)
+	}
+	return hourString
+}

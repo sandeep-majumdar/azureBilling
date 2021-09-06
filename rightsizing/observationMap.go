@@ -1,5 +1,11 @@
 package rightsizing
 
+import (
+	"fmt"
+
+	"github.com/adeturner/azureBilling/observability"
+)
+
 type MetricName string
 
 type ObservationMap struct {
@@ -24,6 +30,20 @@ func (om *ObservationMap) NewObservations(metricName string) *Observations {
 	return obs
 }
 
+func (om *ObservationMap) print() {
+	observability.Info(fmt.Sprintf("%v", om))
+	for _, v := range om.ObserveMap {
+		v.print()
+	}
+}
+
+func (os *Observations) print() {
+	observability.Info(fmt.Sprintf("%v", os))
+	for i := range os.ObservationArray {
+		os.ObservationArray[i].print()
+	}
+}
+
 func (os *Observations) add(o *Observation) {
 	os.ObservationArray = append(os.ObservationArray, o)
 }
@@ -33,6 +53,7 @@ func NewObservationsFromAzMonitor(azmmt *azMonitorMetricsType) (om *ObservationM
 	om = NewObservationMap()
 	if azmmt != nil {
 		for _, v := range azmmt.Value {
+			//observability.Info("found observation")
 			obs := om.NewObservations(v.Name.Value)
 			for _, ts := range v.Timeseries {
 				for _, metricObservation := range ts.Data {

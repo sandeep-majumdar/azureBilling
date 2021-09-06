@@ -20,7 +20,7 @@ import (
 type VmRightsizing struct {
 	fileLocation string
 	vmd          *vmDetails
-	vdv          *vmDayValues
+	vdv          *vmDayResourceMap
 	vmm          *vmMonitorMetrics
 }
 
@@ -39,11 +39,10 @@ func (rsz *VmRightsizing) ProcessBillFile() (err error) {
 	}
 
 	if err == nil {
-		rsz.vdv, err = NewVmDayValues()
+		rsz.vdv, err = NewVmDayValueResourceMap()
 	}
 
 	if rsz.vmd.FileExists(rsz.getOutputVmDetailsCSVFile()) && rsz.vdv.FileExists(rsz.getOutputVmDayValuesCSVFile()) {
-		observability.Info("Loading from output files")
 		loadFromBillfile = false
 		err = rsz.vmd.ReadFile(rsz.getOutputVmDetailsCSVFile())
 		if err == nil {
@@ -151,8 +150,6 @@ func (rsz *VmRightsizing) getOutputVmMonitorMetricsFile() string {
 }
 
 func (rsz *VmRightsizing) ProcessMetrics() (err error) {
-	observability.Info("Processing Metrics")
-
 	if err == nil {
 		rsz.vmm, err = NewVmMonitorMetrics()
 	}
@@ -160,7 +157,6 @@ func (rsz *VmRightsizing) ProcessMetrics() (err error) {
 	loadFromFile := false
 
 	if rsz.vmm.FileExists(rsz.getOutputVmMonitorMetricsFile()) {
-		observability.Info("Loading from output file")
 		err = rsz.vmm.ReadFile(rsz.getOutputVmMonitorMetricsFile())
 		loadFromFile = true
 	}
@@ -186,7 +182,7 @@ func (rsz *VmRightsizing) ProcessMetrics() (err error) {
 		for k, v := range rsz.vmd.vmMap {
 			wg.Add(1)
 
-			go func(cliIndex int, key vmdConcatKey, val *vmDetail) {
+			go func(cliIndex int, key vmResourceId, val *vmDetail) {
 				rsz.ProcessMetricsForVM(azClis[cliIndex], key, val)
 				wg.Done()
 			}(i, k, v)
@@ -214,6 +210,11 @@ func (rsz *VmRightsizing) ProcessMetrics() (err error) {
 		}
 	}
 
+	if err == nil {
+		agg := NewVmAggregateMap(rsz.vmd, rsz.vdv, rsz.vmm)
+		agg.WriteFile(agg.getOutputFile())
+	}
+
 	if err != nil {
 		observability.Error(fmt.Sprintf(err.Error()))
 	}
@@ -221,7 +222,12 @@ func (rsz *VmRightsizing) ProcessMetrics() (err error) {
 	return err
 }
 
-func (rsz *VmRightsizing) ProcessMetricsForVM(azCli *azure.AzureCli, k vmdConcatKey, v *vmDetail) (err error) {
+func (rsz *VmRightsizing) AggregateOutput() (err error) {
+
+	return nil
+}
+
+func (rsz *VmRightsizing) ProcessMetricsForVM(azCli *azure.AzureCli, k vmResourceId, v *vmDetail) (err error) {
 
 	var cmd, out, errStr string
 	var mt *azMonitorMetricsType
@@ -263,7 +269,7 @@ func (rsz *VmRightsizing) ProcessMetricsForVM(azCli *azure.AzureCli, k vmdConcat
 	return err
 }
 
-func (rsz *VmRightsizing) ProcessMetricOutput(k vmdConcatKey, v *vmDetail, out string) (mt *azMonitorMetricsType, err error) {
+func (rsz *VmRightsizing) ProcessMetricOutput(k vmResourceId, v *vmDetail, out string) (mt *azMonitorMetricsType, err error) {
 
 	mt = &azMonitorMetricsType{}
 	err = json.Unmarshal([]byte(out), &mt)

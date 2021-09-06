@@ -19,6 +19,7 @@ type Config struct {
 	OutputVmDetailsCSVFile     string `json:"outputVmDetailsCSVFile"`
 	OutputVmDayValuesCSVFile   string `json:"outputVmDayValuesCSVFile"`
 	OutputVmMonitorMetricsFile string `json:"outputVmMonitorMetricsFile"`
+	OutputVmAggregateCSVFile   string `json:"outputVmAggregateCSVFile"`
 	RightsizingMaxThreads      int    `json:"rightsizingMaxThreads"`
 }
 

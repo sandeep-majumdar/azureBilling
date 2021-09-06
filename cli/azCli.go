@@ -157,7 +157,6 @@ func azrightsizing(ccmd *cobra.Command, args []string) {
 	rsz := rightsizing.VmRightsizing{}
 	rsz.SetFile(billingCSVFile)
 	err := rsz.ProcessBillFile()
-
 	if err == nil {
 		err = rsz.ProcessMetrics()
 	}

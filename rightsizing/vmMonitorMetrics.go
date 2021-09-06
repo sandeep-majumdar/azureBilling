@@ -3,6 +3,7 @@ package rightsizing
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"sync"
 
@@ -10,16 +11,14 @@ import (
 	"github.com/adeturner/azureBilling/utils"
 )
 
-type vmmConcatKey string
-
 type vmMonitorMetrics struct {
-	VmMap map[vmmConcatKey]*vmMonitorMetric `json:"vmMap"`
+	VmMap map[vmResourceId]*vmMonitorMetric `json:"vmMap"`
 	mutex sync.RWMutex
 }
 
 func NewVmMonitorMetrics() (vmm *vmMonitorMetrics, err error) {
 	vmm = &vmMonitorMetrics{}
-	vmm.VmMap = make(map[vmmConcatKey]*vmMonitorMetric)
+	vmm.VmMap = make(map[vmResourceId]*vmMonitorMetric)
 	return vmm, err
 }
 
@@ -32,8 +31,8 @@ func (vmm *vmMonitorMetrics) add(resourceId, errStr string, mt *azMonitorMetrics
 	return err
 }
 
-func (vmm *vmMonitorMetrics) getConcatKey(resourceId string) vmmConcatKey {
-	return vmmConcatKey(resourceId)
+func (vmm *vmMonitorMetrics) getConcatKey(resourceId string) vmResourceId {
+	return vmResourceId(resourceId)
 }
 
 func (vmm *vmMonitorMetrics) WriteFile(filename string) error {
@@ -56,13 +55,13 @@ func (vmm *vmMonitorMetrics) ReadFile(filename string) error {
 	defer f.Close()
 
 	if err == nil {
-		decoder := json.NewDecoder(f)
-		err = decoder.Decode(vmm)
+		file, _ := ioutil.ReadFile(filename)
+		_ = json.Unmarshal([]byte(file), &vmm)
 	}
 	if err == nil {
 		observability.Info(fmt.Sprintf("Loaded %d metric records from file %s", vmm.GetMapLen(), filename))
+		observability.LogMemory("Info")
 	}
-
 	return err
 }
 
@@ -80,4 +79,11 @@ func (vmm *vmMonitorMetrics) GetMapLen() int {
 	vmm.mutex.RLock()
 	defer vmm.mutex.RUnlock()
 	return len(vmm.VmMap)
+}
+
+func (vmm *vmMonitorMetrics) print(r vmResourceId) {
+	observability.Info(fmt.Sprintf("%v", vmm.VmMap[r]))
+	if vmm.VmMap[r].Observations != nil {
+		vmm.VmMap[r].print()
+	}
 }
